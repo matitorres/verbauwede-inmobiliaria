@@ -1,0 +1,97 @@
+<nav class="navbar navbar-dark bg-gradient-custom-secondary shadow mt-lg-3">
+    <div class="container d-flex justify-content-center">
+        <button class="navbar-toggler border-0 w-100 text-white sinborde" type="button" data-toggle="collapse"
+            data-target="#navbarOwnerContact" aria-controls="navbarOwnerContact" aria-expanded="false"
+            aria-label="Toggle contact form">
+            <div class="container d-flex flex-row-reverse flex-sm-row justify-content-center">
+                <h3 class="text-center">
+                    <span class="font-weight-light font-sm">QUIERO </span>
+                    VENDER
+                    <span class="font-weight-light font-sm"> O </span>
+                    ALQUILAR
+                    <span class="font-weight-light font-sm"> MI PROPIEDAD</span>
+                </h3>
+            </div>
+        </button>
+
+        <div class="collapse navbar-collapse mb-2" id="navbarOwnerContact">
+            <form action="/send_contact_form" method="POST" class="w-100">
+                <div class="form-row w-100 pb-4">
+
+                    <hr class="d-flex w-100 mx-3 border-secondary">
+
+                    <h5 class="col-12 text-white text-center font-weight-light">Datos de la propiedad</h5>
+                    <div class="form-group col-sm-4 col-lg-2 m-lg-0 align-self-center">
+                        <select class="form-control border-0" name="operation">
+                            <option hidden value="" selected>Operación</option>
+                            <option value="">-</option>
+                            {{#each propertyFormValues.enumOperation}}
+                            <option value="{{this}}" {{isSelected this ../formFields.searchOperation}}>
+                                {{this}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4 col-lg-2 m-lg-0 align-self-center">
+                        <select class="form-control border-0" name="type">
+                            <option hidden value="" selected>Tipo de propiedad</option>
+                            <option value="">-</option>
+                            {{#each propertyFormValues.enumType}}
+                            <option value="{{this}}">
+                                {{this}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4 col-lg-2 m-lg-0 align-self-center">
+                        <select class="form-control border-0" name="province">
+                            <option hidden value="" selected>Provincia</option>
+                            {{#each propertyFormValues.enumProvince}}
+                            <option value="{{this}}">
+                                {{this}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4 col-lg-2 m-lg-0 align-self-center">
+                        <input type="text" class="form-control border-0" name="city" maxlength="50"
+                            placeholder="Localidad">
+                    </div>
+                    <div class="form-group col-sm-8 col-lg-4 m-lg-0 align-self-center">
+                        <input type="text" class="form-control border-0" name="address" maxlength="50"
+                            placeholder="Dirección">
+                    </div>
+
+                    <hr class="d-flex w-100 mx-3 border-secondary">
+
+                    <h5 class="col-12 text-white text-center font-weight-light">Información de contacto</h5>
+                    <div class="form-group col-md-4 m-md-0 align-self-center">
+                        <input type="text" class="form-control border-0" name="name" maxlength="50"
+                            placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group col-sm-6 col-md-4 m-md-0 align-self-center d-flex align-items-stretch">
+                        <input type="email" class="form-control border-0" name="email" maxlength="50"
+                            placeholder="Correo Electrónico">
+                        <div class="d-flex align-items-center pl-2" title="Obligatorio">
+                            <i class="fas fa-exclamation text-white"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 col-md-4 m-md-0 align-self-center d-flex align-items-stretch">
+                        <input type="number" class="form-control border-0" name="phone" placeholder="Teléfono">
+                        <div class="d-flex align-items-center pl-2" title="Obligatorio">
+                            <i class="fas fa-exclamation text-white"></i>
+                        </div>
+                    </div>
+
+                    <hr class="d-flex w-100 mx-3 border-secondary">
+
+                    <div class="form-group col-12 m-md-0 pt-3">
+                        <button class="btn btn-link btn-lg text-white w-100" type="submit">
+                            <span class="font-weight-bold">Enviar consulta</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>

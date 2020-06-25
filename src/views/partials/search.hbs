@@ -1,0 +1,141 @@
+<nav class="navbar navbar-expand-md navbar-light bg-gradient-custom-primary shadow mt-lg-3 py-3">
+    <div class="container d-flex justify-content-center">
+        <button class="navbar-toggler border-0 w-100 sinborde" type="button" data-toggle="collapse"
+            data-target="#searhBar" aria-controls="searhBar" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="font-size: 1.5em"><i class="fas fa-search text-white"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="searhBar">
+            <form action="{{#if admin}}/admin/properties/search/1{{else}}/search/1{{/if}}" method="POST" class="w-100">
+                <div class="form-row w-100">
+
+                    <hr class="d-flex d-md-none w-100 mx-3 border-primary-light">
+
+                    <div class="col-md-10 form-row w-100 mx-auto">
+                        <div class="col-md-3 align-self-center mt-3 mb-2 my-md-3">
+                            <select class="form-control border-0 rounded-lg shadow" name="searchOperation">
+                                <option hidden value="" selected>Operación</option>
+                                <option value="">-</option>
+                                {{#each propertyFormValues.enumOperation}}
+                                <option value="{{this}}" {{isSelected this ../formFields.searchOperation}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-md-4 align-self-center my-2 my-md-3">
+                            <select class="form-control border-0 rounded-lg shadow" name="searchType">
+                                <option hidden value="" selected>Tipo de propiedad</option>
+                                <option value="">-</option>
+                                {{#each propertyFormValues.enumType}}
+                                <option value="{{this}}" {{isSelected this ../formFields.searchType}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-md-5 align-self-center mb-3 mt-2 my-md-3">
+                            <input type="text" class="form-control border-0 rounded-lg shadow" name="searchCity" maxlength="50"
+                                pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{0,50}" value="{{formFields.searchCity}}" placeholder="Localidad">
+                        </div>
+                        {{#if admin}}
+                        {{else}}
+                        <div class="col-md-12 collapse animated" id="advancedSearch">
+                            <div class="d-flex flex-wrap justify-content-around align-items-start">
+
+                                <div class="search-bedrooms d-flex flex-wrap justify-content-center my-2 my-md-3">
+                                    <div class="search-bedrooms-title d-flex align-items-center">
+                                        <h4 class="text-white font-weight-light">Dormitorios</h4>
+                                    </div>
+                                    <div class="search-bedrooms-btns d-flex flex-wrap justify-content-center mx-2">
+                                        <button type="button" id="btn-bedrooms-1"
+                                            class="btn-filter btn btn-sm rounded-pill mx-1 shadow" aria-pressed="true">
+                                            1+
+                                        </button>
+                                        <button type="button" id="btn-bedrooms-2"
+                                            class="btn-filter btn btn-sm rounded-pill mx-1 shadow" aria-pressed="true">
+                                            2+
+                                        </button>
+                                        <button type="button" id="btn-bedrooms-3"
+                                            class="btn-filter btn btn-sm rounded-pill mx-1 shadow" aria-pressed="true">
+                                            3+
+                                        </button>
+                                        <button type="button" id="btn-bedrooms-4"
+                                            class="btn-filter btn btn-sm rounded-pill mx-1 shadow" aria-pressed="true">
+                                            4+
+                                        </button>
+                                        <button type="button" id="btn-bedrooms-5"
+                                            class="btn-filter btn btn-sm rounded-pill mx-1 shadow" aria-pressed="true">
+                                            5+
+                                        </button>
+                                        <button type="button" id="refresh-bedrooms"
+                                            class="btn p-0 btn-link text-light mx-1">
+                                            <i class="fas fa-sync"></i>
+                                        </button>
+                                    </div>
+                                    <div class="search-bedrooms-switch d-flex align-items-center">
+                                        <div class="custom-control custom-switch pt-2 pt-md-1 mx-auto">
+                                            <input type="checkbox" id="bedrooms-switch"
+                                                class="custom-control-input shadow">
+                                            <label class="custom-control-label text-white" for="bedrooms-switch">Valor
+                                                exacto</label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="searchBedrooms" id="search-bedrooms">
+                                    <input type="hidden" name="searchBedroomsExact" id="search-bedrooms-exact">
+                                </div>
+
+                                <div class="search-price d-flex flex-wrap justify-content-center my-2 my-md-3">
+                                    <div class="search-price-title d-flex align-items-center">
+                                        <h4 class="text-white font-weight-light">Precio</h4>
+                                    </div>
+                                    <div class="search-price-fields d-flex mx-2">
+                                        <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                            name="searchPriceMin" maxlength="50" value="{{formFields.searchCity}}"
+                                            id="input-price-min" placeholder="$ Desde">
+                                        <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                            name="searchPriceMax" maxlength="50" value="{{formFields.searchCity}}"
+                                            id="input-price-max" placeholder="$ Hasta">
+                                        <button type="button" id="refresh-price"
+                                            class="btn p-0 btn-link text-light mx-1">
+                                            <i class="fas fa-sync"></i>
+                                        </button>
+                                    </div>
+                                    <div class="search-price-switch d-flex align-items-center">
+                                        <div class="custom-control custom-switch pt-2 pt-md-1 mx-auto">
+                                            <input type="checkbox" class="custom-control-input shadow"
+                                                id="dollar-switch">
+                                            <label class="custom-control-label text-white"
+                                                for="dollar-switch">Dolar</label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="is-dollar" name="searchIsDollar">
+                                </div>
+
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+
+                    <hr class="d-flex d-md-none w-100 mx-3 border-primary-light">
+
+                    <div class="form-group d-flex justify-content-center align-items-center col-md-2 m-md-0 pb-1">
+                        <button class="btn btn-link btn-lg text-white w-100 py-md-0" type="submit">
+                            <span class="d-none d-md-block icon-search">
+                                <i class="fas fa-search text-white"></i>
+                            </span>
+                            <span class="font-weight-bold d-md-none">Buscar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+{{#if admin}}
+{{else}}
+<button class="navbar-toggler border-0 w-100 text-primary sinborde mt-1" type="button" data-toggle="collapse"
+    data-target="#advancedSearch" aria-controls="advancedSearch" aria-expanded="false" aria-label="Toggle navigation">
+    <h5 class="font-weight-light">Búsqueda avanzada <i class="fas fa-caret-down ml-1"></i></h5>
+</button>
+{{/if}}

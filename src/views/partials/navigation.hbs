@@ -1,0 +1,103 @@
+<div class="bg-white py-1">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
+        <div class="px-5"></div>
+        <div class="mt-3 mt-md-0 d-none d-md-flex">
+            <a href="{{contactData.mailLink}}" target="_blank" rel="noopener noreferrer"
+                class="font-weight-bold text-decoration-none text-secondary d-md-flex align-items-center">
+                <i class="fas fa-envelope mr-2 icon-navbar-social"></i>
+                <span class="align-text-top"> {{contactData.mail}}</span>
+            </a>
+        </div>
+        <div class="d-flex justify-content-between my-2 my-md-0">
+            <a href="{{contactData.mailLink}}" target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none text-secondary mx-2 d-md-none">
+                <i class="fas fa-envelope icon-navbar-social"></i>
+            </a>
+            <a href="{{contactData.facebook}}" class="text-decoration-none text-secondary mx-2"
+                rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-facebook icon-navbar-social"></i>
+            </a>
+            <a href="{{contactData.instagram}}" class="text-decoration-none text-secondary mx-2"
+                rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-instagram icon-navbar-social"></i>
+            </a>
+            <a href="{{contactData.whatsappLink}}" class="text-decoration-none text-primary mx-2"
+                rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-whatsapp icon-navbar-social"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="d-none nav-aux bg-gradient-custom-navbar py-5">
+    <div class="container py-2">
+        <a href="/" class="my-1">
+            <img src="" height="150">
+        </a>
+    </div>
+</div>
+<div class="bg-gradient-custom-navbar shadow nav-fix py-3 py-lg-5">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center py-2">
+        <a href="/" class="my-1">
+            <img src="/img/logo.svg" height="150" alt="Verbauwede Inmobiliaria">
+        </a>
+        <div class="d-flex flex-column flex-column flex-md-row align-items-stretch justify-content-between align-items-center nav-contact-links">
+            <a href="#contact-form-footer" id="contact-form-link"
+                class="d-flex flex-row text-secondary text-decoration-none pr-md-3 mr-auto">
+                <div class="align-self-center text-center">
+                    <i class="far fa-clipboard icon-navbar-form ml-1"></i>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="pl-2">
+                        <span class="font-weight-bold text-navbar">Contáctenos</span>
+                    </div>
+                    <div class="pl-2 mt-text-navbar">
+                        <span class="text-navbar">Formulario de contacto</span>
+                    </div>
+                </div>
+            </a>
+            <a href="{{contactData.phoneLink}}"
+                class="d-flex flex-row text-secondary text-decoration-none pr-md-3 border-left-navbar mr-auto mt-3 mt-md-0">
+                <div class="align-self-center text-center">
+                    <i class="fas fa-phone icon-navbar"></i>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="">
+                        <span class="font-weight-bold text-navbar">{{contactData.phone}}</span>
+                    </div>
+                    <div class="pl-2 mt-text-navbar">
+                        <span class="text-navbar">Teléfono celular</span>
+                    </div>
+                </div>
+            </a>
+            <a href="{{contactData.whatsappLink}}"
+                class="d-flex flex-row text-secondary text-decoration-none pr-md-3 border-left-navbar mr-auto mt-3 mt-md-0"
+                rel="noopener noreferrer" target="_blank">
+                <div class="align-self-center text-center">
+                    <i class="fab fa-whatsapp icon-navbar-wa text-primary"></i>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="">
+                        <span class="font-weight-bold text-navbar">{{contactData.whatsappNumber}}</span>
+                    </div>
+                    <div class="pl-2 mt-text-navbar">
+                        <span class="text-navbar">Whatsapp</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="nav-contact-icons align-items-stretch justify-content-center align-items-center d-none">
+            <a href="{{contactData.mailLink}}" target="_blank" rel="noopener noreferrer"
+                class="d-flex text-decoration-none text-secondary border-left-navbar mx-2">
+                <i class="fas fa-envelope icon-navbar-social align-self-center"></i>
+            </a>
+            <a href="{{contactData.facebook}}" class="d-flex text-decoration-none text-secondary mx-2"
+                rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-facebook icon-navbar-social align-self-center"></i>
+            </a>
+            <a href="{{contactData.instagram}}" class="d-flex text-decoration-none text-secondary mx-2"
+                rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-instagram icon-navbar-social align-self-center"></i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,300 @@
+<div class="flex-fill mt-3">
+    <h4 class="my-2 text-secondary d-flex d-md-none">
+        <span class="bg-gradient-custom-secondary px-1 mr-2 rounded-right">&nbsp;</span>
+        <span class="font-weight-light">Propiedades&nbsp;</span>
+        destacadas
+    </h4>
+    <hr class="mt-1 d-flex d-md-none mx-4">
+    <div class="d-flex justify-content-between" id="featured-properties-section">
+        <div class="index-title-left d-none d-md-flex align-items-start bg-gradient-custom-secondary shadow my-2 mr-1">
+            <img src="/img/featured-properties-title.svg" width="30" class="mx-4 my-5" alt="">
+        </div>
+        {{!-- <div class="bg-gradient-custom-secondary-reverse d-flex ml-auto pr-1 mb-2 h-100 shadow rounded-bottom">
+                <span>&nbsp;</span>
+            </div> --}}
+        <div class="index-properties-left d-flex flex-wrap justify-content-around">
+            {{#each featuredProperties}}
+            <a href="/property/{{_id}}"
+                class="d-flex flex-column my-2 featured-custom text-decoration-none rounded-lg shadow overflow-hidden">
+                <div class="overflow-hidden position-relative w-100 h-100">
+                    <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
+                        alt="Foto de {{address}}">
+                    <div class="d-flex flex-wrap w-100 h-100">
+                        <div class="d-none d-lg-flex flex-column justify-content-between featured-info position-relative px-2 py-4">
+                            <div class="d-flex flex-column">
+                                <div class="featured-border-bottom text-truncate">
+                                    <h4
+                                        class="text-white text-center text-uppercase font-weight-bolder text-truncate mx-2">
+                                        {{type}}</h4>
+                                </div>
+                                <div class="text-truncate">
+                                    <h5 class="text-white mb-0 mt-1 text-center text-truncate mx-2">{{city}}</h5>
+                                    <h6 class="text-white font-weight-light text-center text-truncate mx-2">{{address}}
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="text-truncate">
+                                    {{#if totalArea}}
+                                    <h6 class="text-white mb-0 mt-1 text-center">
+                                        <span class="font-weight-light">Superficie</span>
+                                        {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                    </h6>
+                                    {{/if}}
+                                    <div
+                                        class="d-flex flex-wrap justify-content-around text-white font-weight-light text-center my-1 px-5">
+                                        {{#if bathrooms}}
+                                        <div>
+                                            <i class="fas fa-bath"></i> {{bathrooms}}
+                                        </div>
+                                        {{/if}}
+                                        {{#if bedrooms}}
+                                        <div>
+                                            <i class="fas fa-bed"></i> {{bedrooms}}
+                                        </div>
+                                        {{/if}}
+                                        {{#if capacity}}
+                                        <div>
+                                            <i class="fas fa-users"></i> {{capacity}}
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                                <div class="featured-border-top text-truncate">
+                                    <h3 class="text-white text-center my-2">
+                                        <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                        {{formatNumber price}}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative bg-gradient-custom-primary ml-auto mb-auto mt-2 mr-2 pb-1">
+                            <small class="text-white text-uppercase mx-3">{{operation}}</small>
+                        </div>
+                        <div class="d-flex d-lg-none flex-column position-relative featured-info-sm mt-auto px-3 py-3">
+                            <div class="d-flex flex-column">
+                                <div class="featured-border-bottom text-truncate">
+                                    <h5 class="text-white text-center text-uppercase font-weight-bolder mb-0">{{type}}</h5>
+                                    <h6 class="text-white text-center font-weight-light mb-2">
+                                        {{city}}, {{province}}
+                                    </h6>
+                                </div>
+                                <div class="text-white text-truncate d-flex justify-content-center my-2">
+                                    {{#if totalArea}}
+                                    <h6 class="text-white text-center mb-0 mx-2">
+                                        <span class="font-weight-light">Superficie</span>
+                                        {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                    </h6>
+                                    {{/if}}
+                                    {{#if bathrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bath"></i> {{bathrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if bedrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bed"></i> {{bedrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if capacity}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-users"></i> {{capacity}}
+                                    </div>
+                                    {{/if}}
+                                </div>
+                                <div class="featured-border-top text-truncate mt-1">
+                                    <h4 class="text-white text-center mb-0 mt-2">
+                                        <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                        {{formatNumber price}}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+    {{#if customProperties}}
+    <h4 class="text-secondary d-flex d-md-none mb-2 mt-5">
+        <span class="bg-gradient-custom-primary px-1 mr-2 rounded-right">&nbsp;</span>
+        <span class="font-weight-light">Recomendadas&nbsp;</span>
+        para ti
+    </h4>
+    <hr class="mt-1 mx-4 d-flex mx-md-5 my-md-5">
+    <div class="d-flex justify-content-between align-items-stretch" id="custom-properties-section">
+        <div class="index-properties-right d-flex flex-column">
+            {{#each customProperties}}
+            <a href="/property/{{_id}}"
+                class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item rounded-lg shadow overflow-hidden {{#if outstanding}}bg-gradient-custom-outstanding{{else}}bg-white{{/if}}">
+                <div class="overflow-hidden position-relative property-list-img">
+                    <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
+                        alt="Foto de {{address}}">
+                    <div class="d-flex d-md-none justify-content-end position-relative text-white text-center mb-auto mt-1">
+                        <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                            <small class="text-uppercase">Novedad</small>
+                        </div>
+                        <div class="bg-gradient-custom-primary px-3 pb-1 mr-1">
+                            <small class="text-uppercase">{{operation}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column property-list-content py-3 px-4">
+                    <div class="d-flex flex-row justify-content-between item-border-bottom">
+                        <div class="d-flex flex-column overflow-hidden">
+                            <h4 class="text-truncate mb-0 pb-1">{{type}}</h4>
+                            <h6 class="font-weight-light text-truncate">
+                                {{address}}, {{city}}, {{province}}
+                            </h6>
+                        </div>
+                        <div class="d-none d-md-flex text-white text-center mb-auto mt-1">
+                            <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                                <small class="text-uppercase">Novedad</small>
+                            </div>
+                            <div class="bg-gradient-custom-primary px-3 pb-1">
+                                <small class="text-uppercase">{{operation}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="d-none d-sm-flex property-list-description">
+                            <p class="item-p my-2 mr-2">{{description}}</p>
+                        </div>
+                        <div class="d-flex flex-wrap flex-md-nowrap justify-content-md-between mb-1">
+                            {{#if totalArea}}
+                            <div class="d-flex flex-wrap flex-md-nowrap justify-content-center property-list-features mt-md-auto text-truncate">
+                                <h6 class="mb-0 text-center mx-2">
+                                    <span class="font-weight-light">Superficie: </span>
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                </h6>
+                                <div class="d-flex">
+                                    {{#if bathrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bath align-text-middle"></i> {{bathrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if bedrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bed"></i> {{bedrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if capacity}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-users"></i> {{capacity}}
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            <div class="ml-auto property-list-price my-2 my-md-0">
+                                <h3 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                    {{formatNumber price}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+        <div class="index-title-right d-none d-md-flex align-items-start bg-gradient-custom-primary shadow ml-3 mb-3">
+            <img src="/img/custom-properties-title.svg" width="30" class="mx-4 my-5" alt="">
+        </div>
+        {{!-- <div class="bg-gradient-custom-primary-reverse d-flex mr-auto pl-1 mb-3 h-100 shadow rounded-bottom">
+                <span>&nbsp;</span>
+            </div> --}}
+    </div>
+    {{/if}}
+    <h4 class="text-secondary d-flex d-md-none mb-2 mt-5">
+        <span class="bg-gradient-custom-light px-1 mr-2 rounded-right">&nbsp;</span>
+        Nuevas
+        <span class="font-weight-light">&nbsp;propiedades</span>
+    </h4>
+    <hr class="mt-1 mx-4 d-flex mx-md-5 my-md-5">
+    <div class="d-flex justify-content-between align-items-stretch mt-3 mb-5" id="latest-properties-section">
+        <div class="index-title-left d-none d-md-flex align-items-start bg-gradient-custom-light-reverse shadow mb-3 mr-3">
+            <img src="/img/latest-properties-title.svg" width="30" class="mx-4 my-5" alt="">
+        </div>
+        {{!-- <div class="bg-gradient-custom-light d-flex ml-auto pr-1 mb-3 h-100 shadow rounded-bottom">
+                <span>&nbsp;</span>
+            </div> --}}
+        <div class="index-properties-left d-flex flex-column w-100">
+            {{#each latestProperties}}
+            <a href="/property/{{_id}}"
+                class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item rounded-lg shadow overflow-hidden {{#if outstanding}}bg-gradient-custom-outstanding{{else}}bg-white{{/if}}">
+                <div class="overflow-hidden position-relative property-list-img">
+                    <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
+                        alt="Foto de {{address}}">
+                    <div
+                        class="d-flex d-md-none justify-content-end position-relative text-white text-center mb-auto mt-1">
+                        <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                            <small class="text-uppercase">Novedad</small>
+                        </div>
+                        <div class="bg-gradient-custom-primary px-3 pb-1 mr-1">
+                            <small class="text-uppercase">{{operation}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column property-list-content py-3 px-4">
+                    <div class="d-flex flex-row justify-content-between item-border-bottom">
+                        <div class="d-flex flex-column overflow-hidden">
+                            <h4 class="text-truncate mb-0 pb-1">{{type}}</h4>
+                            <h6 class="font-weight-light text-truncate">
+                                {{address}}, {{city}}, {{province}}
+                            </h6>
+                        </div>
+                        <div class="d-none d-md-flex text-white text-center mb-auto mt-1">
+                            <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                                <small class="text-uppercase">Novedad</small>
+                            </div>
+                            <div class="bg-gradient-custom-primary px-3 pb-1">
+                                <small class="text-uppercase">{{operation}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="d-none d-sm-flex property-list-description">
+                            <p class="item-p my-2 mr-2">{{description}}</p>
+                        </div>
+                        <div class="d-flex flex-wrap flex-md-nowrap justify-content-md-between mb-1">
+                            {{#if totalArea}}
+                            <div class="d-flex justify-content-center property-list-features mt-md-auto text-truncate">
+                                <h6 class="mb-0 text-center mx-2">
+                                    <span class="font-weight-light">Superficie: </span>
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                </h6>
+                                <div class="d-flex">
+                                    {{#if bathrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bath align-text-middle"></i> {{bathrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if bedrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bed"></i> {{bedrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if capacity}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-users"></i> {{capacity}}
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            <div class="ml-auto property-list-price my-2 my-md-0">
+                                <h3 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                    {{formatNumber price}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>

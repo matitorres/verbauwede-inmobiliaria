@@ -1,0 +1,463 @@
+<div class="d-flex flex-wrap align-items-start">
+    <div class="filter-properties-container d-flex flex-column">
+
+        <form action="/search/1" method="POST" class="w-100">
+            <div class="filter-properties bg-gradient-custom-primary shadow">
+
+                <button id="collapse-filters"
+                    class="d-block d-md-none btn btn-link btn-lg text-decoration-none text-white w-100 py-3"
+                    type="button">
+                    <span style="font-size: 1.5em"><i class="fas fa-search text-white"></i></span>
+                </button>
+
+                <div id="filters">
+                    <div class="filter-type d-flex flex-column justify-content-center mb-3">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Tipo de propiedad</h5>
+                        </div>
+                        <div class="filter-input d-flex justify-content-center mx-2">
+                            <select class="form-control border-0 rounded-lg shadow mx-1" name="searchType"
+                                id="input-type">
+                                <option hidden value="" selected>Seleccione tipo</option>
+                                {{#each propertyFormValues.enumType}}
+                                <option value="{{this}}" {{isSelected this ../formFields.searchType}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                            <button type="button" id="refresh-type" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-province d-flex flex-column justify-content-center mb-3">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Provincia</h5>
+                        </div>
+                        <div class="filter-input d-flex justify-content-center mx-2">
+                            <select class="form-control border-0 rounded-lg shadow mx-1" name="searchProvince"
+                                id="input-province">
+                                <option hidden value="" selected>Seleccione provincia</option>
+                                {{#each propertyFormValues.enumProvince}}
+                                <option value="{{this}}" {{isSelected this ../formFields.searchProvince}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                            <button type="button" id="refresh-province" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-city d-flex flex-column justify-content-center mb-3">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Localidad</h5>
+                        </div>
+                        <div class="filter-input d-flex justify-content-center mx-2">
+                            <input type="text" class="form-control border-0 rounded-lg shadow mx-1" name="searchCity"
+                                id="input-city" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{0,50}" value="{{formFields.searchCity}}"
+                                placeholder="Ingrese localidad" maxlength="50">
+                            <button type="button" id="refresh-city" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-bedrooms d-flex flex-column justify-content-center mb-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Dormitorios</h5>
+                        </div>
+                        <div class="filter-input d-flex flex-wrap justify-content-between mx-2">
+                            <button type="button" id="btn-bedrooms-1" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill shadow {{btnFilterSelected formFields.searchBedrooms '1'}}">
+                                1+
+                            </button>
+                            <button type="button" id="btn-bedrooms-2" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill shadow {{btnFilterSelected formFields.searchBedrooms '2'}}">
+                                2+
+                            </button>
+                            <button type="button" id="btn-bedrooms-3" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill shadow {{btnFilterSelected formFields.searchBedrooms '3'}}">
+                                3+
+                            </button>
+                            <button type="button" id="btn-bedrooms-4" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill shadow {{btnFilterSelected formFields.searchBedrooms '4'}}">
+                                4+
+                            </button>
+                            <button type="button" id="btn-bedrooms-5" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill shadow {{btnFilterSelected formFields.searchBedrooms '5'}}">
+                                5+
+                            </button>
+                            <button type="button" id="refresh-bedrooms" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="filter-switch d-flex align-items-center my-1">
+                            <div class="custom-control custom-switch mx-auto pt-1">
+                                <input type="checkbox" id="bedrooms-switch" class="custom-control-input shadow"
+                                    {{#if formFields.searchBedroomsExact}}checked{{/if}}>
+                                <label class="custom-control-label text-white" for="bedrooms-switch">Valor
+                                    exacto</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="searchBedrooms" id="search-bedrooms"
+                            value="{{formFields.searchBedrooms}}">
+                        <input type="hidden" name="searchBedroomsExact" id="search-bedrooms-exact"
+                            value="{{formFields.searchBedrooms}}">
+                    </div>
+
+                    <div class="filter-price d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Precio</h5>
+                        </div>
+                        <div class="filter-input d-flex mx-2">
+                            <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                name="searchPriceMin" max="999999999" value="{{formFields.searchPriceMin}}"
+                                id="input-price-min" placeholder="$ Desde">
+                            <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                name="searchPriceMax" max="999999999" value="{{formFields.searchPriceMax}}"
+                                id="input-price-max" placeholder="$ Hasta">
+                            <button type="button" id="refresh-price" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="filter-switch d-flex align-items-center my-1">
+                            <div class="custom-control custom-switch mx-auto pt-1">
+                                <input type="checkbox" class="custom-control-input shadow" id="dollar-switch"
+                                    {{#if formFields.searchIsDollar}}checked{{/if}}>
+                                <label class="custom-control-label text-white" for="dollar-switch">Dolar</label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="is-dollar" name="searchIsDollar">
+                    </div>
+
+                    <div class="filter-area d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light" id="filter-area-title">Superficie total</h5>
+                        </div>
+                        <div class="filter-input d-flex mx-2">
+                            <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                name="searchAreaMin" maxlength="50" value="{{formFields.searchAreaMin}}"
+                                id="input-area-min" placeholder="m2 Desde">
+                            <input type="number" class="form-control border-0 rounded-lg shadow mx-1"
+                                name="searchAreaMax" maxlength="50" value="{{formFields.searchAreaMax}}"
+                                id="input-area-max" placeholder="m2 Hasta">
+                            <button type="button" id="refresh-area" class="btn p-0 btn-link text-light mx-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="filter-switch d-flex align-items-center my-1">
+                            <div class="custom-control custom-switch mx-auto pt-1">
+                                <input type="checkbox" class="custom-control-input shadow" id="hectare-switch"
+                                    {{#if formFields.searchIsHectare}}checked{{/if}}>
+                                <label class="custom-control-label text-white" for="hectare-switch">Hectárea</label>
+                            </div>
+                        </div>
+                        <div class="filter-switch d-flex align-items-center">
+                            <div class="custom-control custom-switch mx-auto pt-1">
+                                <input type="checkbox" class="custom-control-input shadow" id="area-switch"
+                                    {{#if formFields.searchIsCoveredArea}}checked{{/if}}>
+                                <label class="custom-control-label text-white" for="area-switch">Cubierta</label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="is-hectare" name="searchIsHectare">
+                        <input type="hidden" id="covered-area" name="searchIsCoveredArea">
+                    </div>
+
+                    <div class="filter-operation d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Operación</h5>
+                        </div>
+                        <div class="filter-input d-flex flex-column justify-content-center mx-2">
+                            {{#each propertyFormValues.enumOperation}}
+                            <button type="button" id="btn-operation-{{sumOne @index}}"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected ../formFields.searchOperation this}}"
+                                aria-pressed="true">
+                                {{this}}
+                            </button>
+                            {{/each}}
+                            <button type="button" id="refresh-operation" class="btn p-0 btn-link text-light my-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="searchOperation" id="search-operation"
+                            value="{{formFields.searchOperation}}">
+                    </div>
+
+                    <div class="filter-services d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Servicios</h5>
+                        </div>
+                        <div class="filter-input d-flex flex-column justify-content-center mx-2">
+                            <button type="button" id="btn-services-1" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Acceso a internet'}}">
+                                Acceso a internet
+                            </button>
+                            <button type="button" id="btn-services-2" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Linea telefónica'}}">
+                                Linea telefónica
+                            </button>
+                            <button type="button" id="btn-services-3" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Cloacas'}}">
+                                Cloacas
+                            </button>
+                            <button type="button" id="btn-services-4" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Gas natural'}}">
+                                Gas natural
+                            </button>
+                            <button type="button" id="btn-services-5" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Luz eléctrica'}}">
+                                Luz eléctrica
+                            </button>
+                            <button type="button" id="btn-services-6" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchServicesArray 'Agua corriente'}}">
+                                Agua corriente
+                            </button>
+                            <button type="button" id="refresh-services" class="btn p-0 btn-link text-light my-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="searchServices" id="search-services"
+                            value="{{formFields.searchServices}}">
+                    </div>
+
+                    <div class="filter-neighborhood d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Tipo de barrio</h5>
+                        </div>
+                        <div class="filter-input d-flex flex-column justify-content-center mx-2">
+                            {{#each propertyFormValues.enumNeighborhoodType}}
+                            {{#if this}}
+                            <button type="button" id="btn-neighborhood-{{@index}}" aria-pressed="true"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected ../formFields.searchNeighborhood this}}">
+                                {{this}}
+                            </button>
+                            {{/if}}
+                            {{/each}}
+                            <button type="button" id="refresh-neighborhood" class="btn p-0 btn-link text-light my-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="searchNeighborhood" id="search-neighborhood"
+                            value="{{formFields.searchNeighborhood}}">
+                    </div>
+
+                    <div class="filter-expenses d-flex flex-column justify-content-center my-1">
+                        <div class="filter-title d-flex align-items-center">
+                            <h5 class="text-white font-weight-light">Expensas</h5>
+                        </div>
+                        <div class="filter-input d-flex flex-column justify-content-center mx-2">
+                            <button type="button" id="btn-expenses-1"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchExpenses 'Con expensas'}}"
+                                aria-pressed="true">
+                                Con expensas
+                            </button>
+                            <button type="button" id="btn-expenses-2"
+                                class="btn-filter btn btn-sm rounded-pill my-1 shadow {{btnFilterSelected formFields.searchExpenses 'Sin expensas'}}"
+                                aria-pressed="true">
+                                Sin expensas
+                            </button>
+                            <button type="button" id="refresh-expenses" class="btn p-0 btn-link text-light my-1">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" name="searchExpenses" id="search-expenses"
+                            value="{{formFields.searchExpenses}}">
+                    </div>
+
+                    <button id="refresh-filters" class="btn btn-link btn-lg text-decoration-none text-light w-100 mt-4"
+                        type="button">
+                        <h6 class="font-weight-light text-center" style="text-shadow: 0 0 20px #222;">
+                            <i class="fas fa-sync"></i>
+                            LIMPIAR FILTROS
+                        </h6>
+                    </button>
+
+                    <button id="btn-filters-submit"
+                        class="d-block d-md-none btn btn-link btn-lg text-decoration-none text-white w-100 mt-2 pb-5"
+                        type="submit">
+                        <h5 class="text-center" style="text-shadow: 0 0 20px #222;">
+                            APLICAR FILTROS
+                        </h5>
+                    </button>
+                </div>
+
+            </div>
+            <div class="d-none d-md-flex justify-content-end align-items-center mt-3 mb-1">
+                <button id="btn-filters-submit-md"
+                    class="btn btn-link btn-lg text-decoration-none text-right py-md-0 pr-3" type="submit">
+                    <h3 class="d-inline font-weight-light">
+                        APLICAR FILTROS
+                        <i class="fas fa-chevron-right"></i>
+                    </h3>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="result-properties d-flex flex-column">
+        <div class="d-flex flex-column">
+            <h4 class="mb-3 text-secondary">
+                <span class="font-weight-light">Propiedades</span>
+                destacadas
+            </h4>
+            {{#each featuredProperties}}
+            <a href="/property/{{_id}}"
+                class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item shadow {{#if outstanding}}bg-gradient-custom-navbar{{else}}bg-white{{/if}}">
+                <div class="overflow-hidden position-relative search-list-img">
+                    <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
+                        alt="Foto de {{address}}">
+                    <div class="d-flex d-lg-none position-relative text-white text-center mb-auto mt-1">
+                        <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1 ml-auto" {{isNew createdAt}}>
+                            <small class="text-uppercase">Novedad</small>
+                        </div>
+                        <div class="bg-gradient-custom-primary px-3 pb-1 mr-1">
+                            <small class="text-uppercase">{{operation}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column search-list-content py-3 px-4">
+                    <div class="d-flex flex-row justify-content-between item-border-bottom">
+                        <div class="d-flex flex-column overflow-hidden">
+                            <h4 class="text-truncate mb-0">{{type}}</h4>
+                            <h6 class="font-weight-light text-truncate">
+                                {{address}}, {{city}}, {{province}}
+                            </h6>
+                        </div>
+                        <div class="d-none d-lg-flex text-white text-center mb-auto mt-1">
+                            <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                                <small class="text-uppercase">Novedad</small>
+                            </div>
+                            <div class="bg-gradient-custom-primary px-3 pb-1">
+                                <small class="text-uppercase">{{operation}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-wrap justify-content-md-between mb-1">
+                            <div class="d-flex flex-wrap justify-content-center property-list-features mt-md-auto">
+                                {{#if totalArea}}
+                                <h6 class="mb-0 text-center mx-2">
+                                    <span class="font-weight-light">Superficie: </span>
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                </h6>
+                                {{/if}}
+                                <div class="d-flex">
+                                    {{#if bathrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bath align-text-middle"></i> {{bathrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if bedrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bed"></i> {{bedrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if capacity}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-users"></i> {{capacity}}
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="ml-auto property-list-price my-2 my-md-0">
+                                <h3 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                    {{formatNumber price}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+            <hr class="w-100">
+            <h4 class="mb-3 text-secondary">
+                Resultados
+                <span class="font-weight-light"> de la búsqueda</span>
+            </h4>
+            {{#if properties}}
+            {{#each properties}}
+            <a href="/property/{{_id}}"
+                class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item shadow {{#if outstanding}}bg-gradient-custom-outstanding{{else}}bg-white{{/if}}">
+                <div class="overflow-hidden position-relative search-list-img">
+                    <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
+                        alt="Foto de {{address}}">
+                    <div class="d-flex d-lg-none position-relative text-white text-center mb-auto mt-1">
+                        <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1 ml-auto" {{isNew createdAt}}>
+                            <small class="text-uppercase">Novedad</small>
+                        </div>
+                        <div class="bg-gradient-custom-primary px-3 pb-1 mr-1">
+                            <small class="text-uppercase">{{operation}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column search-list-content py-3 px-4">
+                    <div class="d-flex flex-row justify-content-between item-border-bottom">
+                        <div class="d-flex flex-column overflow-hidden">
+                            <h4 class="text-truncate mb-0">{{type}}</h4>
+                            <h6 class="font-weight-light text-truncate">
+                                {{address}}, {{city}}, {{province}}
+                            </h6>
+                        </div>
+                        <div class="d-none d-lg-flex text-white text-center mb-auto mt-1">
+                            <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
+                                <small class="text-uppercase">Novedad</small>
+                            </div>
+                            <div class="bg-gradient-custom-primary px-3 pb-1">
+                                <small class="text-uppercase">{{operation}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-wrap justify-content-md-between mb-1">
+                            {{#if totalArea}}
+                            <div class="d-flex flex-wrap justify-content-center property-list-features mt-md-auto">
+                                <h6 class="mb-0 text-center mx-2">
+                                    <span class="font-weight-light">Superficie: </span>
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                </h6>
+                                <div class="d-flex">
+                                    {{#if bathrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bath align-text-middle"></i> {{bathrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if bedrooms}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-bed"></i> {{bedrooms}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if capacity}}
+                                    <div class="mx-2">
+                                        <i class="fas fa-users"></i> {{capacity}}
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            <div class="ml-auto property-list-price my-2 my-md-0 mr-2">
+                                <h3 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
+                                    {{formatNumber price}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+            {{else}}
+            <h2 class="text-center text-secondary font-weight-light my-5">
+                <i class="far fa-grin-beam-sweat display-4 mb-2"></i><br>
+                 No hay propiedades que coincidan. <br>
+                 <span class="font-weight-bold">Contáctese con nosotros</span> para más información.
+            </h2>
+            {{/if}}
+        </div>
+        {{>pagination}}
+    </div>
+</div>

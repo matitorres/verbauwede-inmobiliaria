@@ -1,0 +1,430 @@
+<div class="row mt-3">
+    <div class="col-lg-8 col-xl-6 mx-auto mb-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                {{#if edit}}
+                <h4>
+                    {{formFields.address}}
+                    <span class="font-weight-light">, {{formFields.city}}</span>
+                    <span class="font-weight-light">, {{formFields.province}}</span>
+                </h4>
+                {{else}}
+                <h4>Agregar {{type}}{{#if errors}}{{formFields.type}}{{/if}}</h4>
+                {{/if}}
+                <hr>
+                <div>
+                    <form
+                        action="{{#if edit}}/admin/properties/update/{{formFields._id}}?_method=PUT{{else}}/admin/properties/add{{/if}}"
+                        method="POST" enctype="multipart/form-data">
+                        <!-- CAMPOS COMUNES -->
+                        {{#if edit}}
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_id" value="{{formFields._id}}">
+                        {{/if}}
+                        <input type="hidden" name="type" value="{{type}}{{#if errors}}{{formFields.type}}{{/if}}">
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-12 mb-sm-0 py-sm-0 text-center">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="outstanding"
+                                        name="outstanding" value="1" {{#if formFields.outstanding}} checked {{/if}}>
+                                    <label class="custom-control-label" for="outstanding">Propiedad destacada</label>
+                                </div>
+                            </div>
+                            <hr class="col-12">
+                            <div class="form-group col-sm-5 py-sm-0">
+                                <label for="selectOperation">Provincia</label>
+                                <select class="form-control" name="province" id="selectProvince"
+                                    {{#if propertyForm.otros}}{{else}}required{{/if}}>
+                                    <option hidden value="" selected>Provincia</option>
+                                    {{#each propertyFormValues.enumProvince}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.province}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-7 py-sm-0">
+                                <label for="inputCity">Localidad</label>
+                                <input type="text" name="city" class="form-control" placeholder="Localidad"
+                                    value="{{formFields.city}}" maxlength="50" id="inputCity"
+                                    {{#if propertyForm.otros}}{{else}}required{{/if}}>
+                            </div>
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="inputAdress">Dirección</label>
+                                <input type="text" name="address" class="form-control" placeholder="Dirección"
+                                    value="{{formFields.address}}" maxlength="50" id="inputAdress"
+                                    {{#if propertyForm.otros}}{{else}}required{{/if}}>
+                            </div>
+                            <div class="form-group col-md-12 py-sm-0">
+                                <label for="map-add-form">Selecciona la ubicación</label>
+                                <div id="map-add-form" class="w-100 rounded" style="height:300px"></div>
+                            </div>
+                            <input type="hidden" name="lat" id="add-form-lat"
+                                {{#if formFields.lat}}value="{{formFields.lat}}" {{/if}} required>
+                            <input type="hidden" name="lng" id="add-form-lng"
+                                {{#if formFields.lat}}value="{{formFields.lng}}" {{/if}} required>
+                            <hr class="col-12">
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="inputDescription">Descripción</label>
+                                <textarea class="form-control" name="description" rows="3"
+                                    placeholder="Descripción de la propiedad" minlength="1" maxlength="9999"
+                                    id="inputDescription" required>{{formFields.description}}</textarea>
+                            </div>
+                            <hr class="col-12">
+                            <div class="form-group col-sm-4 py-sm-0">
+                                <label for="selectOperation">Operación</label>
+                                <select class="form-control" name="operation" id="selectOperation" required>
+                                    <option hidden value="" selected>Operación</option>
+                                    {{#each propertyFormValues.enumOperation}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.operation}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-5 py-sm-0">
+                                <label for="inputPrice">Precio</label>
+                                <input type="number" name="price" class="form-control d-block" placeholder="Precio"
+                                    value="{{formFields.price}}" min="1" max="999999999" id="inputPrice" required>
+                            </div>
+                            <div class="form-group col-sm-3 py-sm-0 d-flex align-items-end">
+                                <div class="custom-control custom-switch py-2 mx-auto ml-sm-1 mr-sm-auto">
+                                    <input type="checkbox" class="custom-control-input" id="dollar-id" name="dollar"
+                                        value="1" {{#if formFields.dollar}} checked {{/if}}>
+                                    <label class="custom-control-label" for="dollar-id">Dólares</label>
+                                </div>
+                            </div>
+                            <hr class="col-12">
+                            {{#if edit}}
+
+                            {{else}}
+
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="inputPropertyPhoto">Foto principal</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="propertyPhoto"
+                                        id="inputPropertyPhoto" accept="image/*"
+                                        {{#if propertyForm.otros}}{{else}}required{{/if}}>
+                                    <label class="custom-file-label text-truncate" for="inputPropertyPhoto">
+                                        Seleccionar foto principal
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="inputPropertyPhotos">Fotos secundarias</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="propertyPhotos"
+                                        id="inputPropertyPhotos" accept="image/*" required multiple>
+                                    <label class="custom-file-label text-truncate" for="inputPropertyPhotos"
+                                        id="labelInputPropertyPhotos">Seleccionar fotos secundarias</label>
+                                </div>
+                            </div>
+
+                            {{/if}}
+
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="inputYoutube">ID de Youtube</label>
+                                <input type="text" name="youtubePath" class="form-control"
+                                    placeholder="ID de video de Youtube" value="{{formFields.youtubePath}}"
+                                    maxlength="100" id="inputYoutube">
+                            </div>
+                            <hr class="col-12">
+                        </div>
+                        <!-- FIN DE CAMPOS COMUNES -->
+
+                        {{#if propertyForm.casa}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-4">
+                                <label for="selectNeighborhood">Tipo de barrio</label>
+                                <select class="form-control" name="neighborhoodType" id="selectNeighborhood" required>
+                                    <option hidden value="" selected>Tipo de barrio</option>
+                                    {{#each propertyFormValues.enumNeighborhoodType}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.neighborhoodType}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="selectOrientation">Orientación</label>
+                                <select class="form-control" name="orientation" id="selectOrientation" required>
+                                    <option hidden value="" selected>Orientación</option>
+                                    {{#each propertyFormValues.enumOrientation}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.orientation}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputAntiquity">Antigüedad</label>
+                                <input type="number" name="antiquity" class="form-control" placeholder="Antigüedad"
+                                    value="{{formFields.antiquity}}" min="0" max="999" id="inputAntiquity" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputTotalArea">Superficie total</label>
+                                <input type="number" name="totalArea" class="form-control"
+                                    placeholder="Superficie total" value="{{formFields.totalArea}}" min="1"
+                                    max="99999999" id="inputTotalArea" required>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="inputCoveredArea">Superficie cubierta</label>
+                                <input type="number" name="coveredArea" class="form-control"
+                                    placeholder="Superficie cubierta" value="{{formFields.coveredArea}}" min="1"
+                                    max="99999999" id="inputCoveredArea" required>
+                            </div>
+
+                            {{#if propertyForm.local}}
+
+                            <div class="form-group col-sm-3">
+                                <label for="inputOffices">Oficinas</label>
+                                <input type="number" name="offices" class="form-control"
+                                    placeholder="Cantidad de oficinas" value="{{formFields.offices}}" min="0" max="99"
+                                    id="inputOffices" required>
+                            </div>
+
+                            {{else}}
+
+                            {{#if propertyForm.hotel}}
+
+                            <div class="form-group col-sm-3">
+                                <label for="inputCapacity">Capacidad</label>
+                                <input type="number" name="capacity" class="form-control" placeholder="Capacidad"
+                                    value="{{formFields.capacity}}" min="0" max="999" id="inputCapacity" required>
+                            </div>
+
+                            {{else}}
+
+                            <div class="form-group col-sm-3">
+                                <label for="inputBedrooms">Dormitorios</label>
+                                <input type="number" name="bedrooms" class="form-control" placeholder="Dormitorios"
+                                    value="{{formFields.bedrooms}}" min="0" max="99" id="inputBedrooms" required>
+                            </div>
+
+                            {{/if}}
+
+                            {{/if}}
+                            <div class="form-group col-sm-3">
+                                <label for="inputBathrooms">Baños</label>
+                                <input type="number" name="bathrooms" class="form-control" placeholder="Baños"
+                                    value="{{formFields.bathrooms}}" min="0" max="99" id="inputBathrooms" required>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="inputGarages">Cocheras</label>
+                                <input type="number" name="garages" class="form-control" placeholder="Cocheras"
+                                    value="{{formFields.garages}}" min="0" max="99" id="inputGarages" required>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="inputTotalRooms">Ambientes</label>
+                                <input type="number" name="totalRooms" class="form-control" placeholder="Ambientes"
+                                    value="{{formFields.totalRooms}}" min="0" max="99" id="inputTotalRooms" required>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="inputFloors">Plantas</label>
+                                <input type="number" name="floors" class="form-control" placeholder="Plantas"
+                                    value="{{formFields.floors}}" min="0" max="99" id="inputFloors" required>
+                            </div>
+                            <hr class="col-12">
+                        </div>
+
+                        {{/if}}
+
+                        {{#if propertyForm.campo}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-4">
+                                <label for="inputTotalArea">Superficie total</label>
+                                <input type="number" name="totalArea" class="form-control" step="0.1"
+                                    placeholder="Superficie total" value="{{formFields.totalArea}}" min="1"
+                                    max="99999999" id="inputTotalArea" required>
+                            </div>
+                            <div class="form-group col-sm-4 d-flex align-items-end">
+                                <div class="custom-control custom-switch py-2 mx-auto ml-sm-1 mr-sm-auto">
+                                    <input type="checkbox" class="custom-control-input" id="hectare-id" name="hectare"
+                                        value="1" {{#if formFields.hectare}} checked {{/if}}>
+                                    <label class="custom-control-label" for="hectare-id">Hectáreas</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="selectNeighborhood">Tipo de barrio</label>
+                                <select class="form-control" name="neighborhoodType" id="selectNeighborhood" required>
+                                    <option hidden value="" selected>Tipo de barrio</option>
+                                    {{#each propertyFormValues.enumNeighborhoodType}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.neighborhoodType}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="selectOrientation">Orientación</label>
+                                <select class="form-control" name="orientation" id="selectOrientation" required>
+                                    <option hidden value="" selected>Orientación</option>
+                                    {{#each propertyFormValues.enumOrientation}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.orientation}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="selectAccess">Acceso</label>
+                                <select class="form-control" name="access" id="selectAccess" required>
+                                    <option hidden value="" selected>Acceso</option>
+                                    {{#each propertyFormValues.enumAccess}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.access}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4 py-sm-0">
+                                <label for="inputAsphaltDistance">Distancia al asfalto</label>
+                                <input type="number" name="asphaltDistance" class="form-control d-block"
+                                    placeholder="Dist. en Km" value="{{formFields.asphaltDistance}}" min="0" max="999"
+                                    id="inputAsphaltDistance" required>
+                            </div>
+                            <hr class="col-12">
+                        </div>
+
+                        {{/if}}
+
+                        {{#if propertyForm.cochera}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-6">
+                                <label for="selectGarageType">Tipo de cochera</label>
+                                <select class="form-control" name="garageType" id="selectGarageType" required>
+                                    <option hidden value="" selected>Tipo de cochera</option>
+                                    {{#each propertyFormValues.enumGarageType}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.garageType}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="selectGarageAccess">Acceso de cochera</label>
+                                <select class="form-control" name="garageAccess" id="selectGarageAccess" required>
+                                    <option hidden value="" selected>Acceso de cochera</option>
+                                    {{#each propertyFormValues.enumGarageAccess}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.garageAccess}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputAntiquity">Antigüedad</label>
+                                <input type="number" name="antiquity" class="form-control" placeholder="Antigüedad"
+                                    value="{{formFields.antiquity}}" min="0" max="999" id="inputAntiquity" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputTotalArea">Superficie total</label>
+                                <input type="number" name="totalArea" class="form-control"
+                                    placeholder="Superficie total" value="{{formFields.totalArea}}" min="1"
+                                    max="99999999" id="inputTotalArea" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputCoveredArea">Superficie cubierta</label>
+                                <input type="number" name="coveredArea" class="form-control"
+                                    placeholder="Superficie cubierta" value="{{formFields.coveredArea}}" min="1"
+                                    max="99999999" id="inputCoveredArea" required>
+                            </div>
+                            <div class="form-group col-sm-4 mx-auto">
+                                <label for="selectOrientation">Orientación</label>
+                                <select class="form-control" name="orientation" id="selectOrientation" required>
+                                    <option hidden value="" selected>Orientación</option>
+                                    {{#each propertyFormValues.enumOrientation}}
+                                    <option value="{{this}}" {{isSelected this ../formFields.orientation}}>{{this}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <hr class="col-12">
+                        </div>
+
+                        {{/if}}
+
+                        {{#if propertyForm.negocio}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-8 py-sm-0">
+                                <label for="inputActivity">Rubro / Actividad</label>
+                                <input type="text" name="activity" class="form-control" placeholder="Rubro / Actividad"
+                                    value="{{formFields.activity}}" maxlength="50" id="inputActivity" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputAntiquity">Antigüedad</label>
+                                <input type="number" name="antiquity" class="form-control" placeholder="Antigüedad"
+                                    value="{{formFields.antiquity}}" min="0" max="999" id="inputAntiquity" required>
+                            </div>
+                            <hr class="col-12">
+                        </div>
+
+                        {{/if}}
+
+                        {{#if propertyForm.otros}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-8 py-sm-0">
+                                <label for="inputActivity">Rubro / Actividad</label>
+                                <input type="text" name="activity" class="form-control" placeholder="Rubro / Actividad"
+                                    value="{{formFields.activity}}" maxlength="50" id="inputActivity">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="inputAntiquity">Antigüedad</label>
+                                <input type="number" name="antiquity" class="form-control" placeholder="Antigüedad"
+                                    value="{{formFields.antiquity}}" min="0" max="999" id="inputAntiquity">
+                            </div>
+                            <hr class="col-12">
+                        </div>
+
+                        {{/if}}
+
+                        <div class="form-row w-100">
+                            <div class="form-group col-sm-12 py-sm-0">
+                                <label for="group-check">Características</label>
+                                <div class="form-row mx-2 pl-3" id="group-check">
+                                    {{#each propertyFormValues.enumFeatures}}
+                                    <div class="form-check col-sm-6">
+                                        <input type="checkbox" class="form-check-input" id="check{{@index}}"
+                                            name="features[]" value="{{this}}" {{isChecked ../formFields.features this}}>
+                                        <label class="form-check-label" for="check{{@index}}">
+                                            {{this}}
+                                        </label>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <hr class="col mx-3">
+                        </div>
+                        <div class="form-row w-100 justify-content-end">
+
+                            <div class="form-group col-md-3 py-sm-0">
+                                <a href="/admin/properties/1" class="btn btn-light w-100">
+                                    Cancelar
+                                </a>
+                            </div>
+                            
+                            {{#if edit}}
+
+                            <div class="form-group col-md-3 py-sm-0">
+                                <a href="/admin/properties/updatePhotos/{{formFields._id}}" class="btn btn-secondary w-100">
+                                    Editar fotos
+                                </a>
+                            </div>
+                            <div class="form-group col-md-6 py-sm-0">
+                                <button class="btn btn-primary w-100" type="submit" id="property-add-submit">
+                                    Actualizar propiedad
+                                </button>
+                            </div>
+
+                            {{else}}
+
+                            <div class="form-group col-md-6 py-sm-0">
+                                <button class="btn btn-primary w-100" type="submit" id="property-add-submit">
+                                    Agregar propiedad
+                                </button>
+                            </div>
+
+                            {{/if}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

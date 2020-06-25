@@ -1,0 +1,62 @@
+{{#if client_msg_success}}
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-client-msg"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="/img/logo.svg" height="80" alt="Verbauwede Inmobiliaria" class="d-block mx-auto">
+            </div>
+            <div class="modal-body bg-gradient-custom-primary text-white">
+                <p class="mb-1 text-center">{{client_msg_success}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close mx-auto pb-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if client_msg_error}}
+<div class="modal fade" id="modal-client-msg" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="/img/logo.svg" height="80" alt="Verbauwede Inmobiliaria" class="d-block mx-auto">
+            </div>
+            <div class="modal-body bg-gradient-custom-secondary text-white">
+                <p class="mb-1 text-center">{{client_msg_error}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close mx-auto pb-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if formFields.error}}
+<div class="modal fade" id="modal-client-msg" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="/img/logo.svg" height="80" alt="Verbauwede Inmobiliaria" class="d-block mx-auto">
+            </div>
+            <div class="modal-body bg-gradient-custom-secondary text-white">
+                <p class="mb-1 text-center">Algunos filtros fueron eliminados</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close mx-auto pb-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}

@@ -1,0 +1,147 @@
+<div class="container d-flex flex-column my-3">
+    <div class="d-flex flex-column mb-2">
+        <div class="d-flex justify-content-start align-items-stretch">
+            <span class="bg-gradient-custom-primary px-2 mr-2"> </span>
+            <span class="h1 text-secondary mb-0">{{property.address}}</span>
+        </div>
+        <div class="d-flex">
+            <span class="bg-gradient-custom-light px-1 mx-2 mr-2"> </span>
+            <span class="h4 font-weight-light text-secondary">
+                {{property.city}},
+                <span class="h4 text-secondary mb-0"> {{property.province}}</span>
+            </span>
+        </div>
+    </div>
+    <div id="carouselSecondaryPhotos" class="carousel slide property-carousel bg-gradient-custom-footer"
+        data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselSecondaryPhotos" data-slide-to="0" class="active"></li>
+            {{#each property.secondaryPhotosPaths}}
+            <li data-target="#carouselSecondaryPhotos" data-slide-to="{{sumOne @index}}"></li>
+            {{/each}}
+        </ol>
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+                <img src="{{property.primaryPhotoPath}}" alt="Foto principal de {{property.address}}"
+                    class="d-block mx-auto h-100">
+            </div>
+            {{#each property.secondaryPhotosPaths}}
+            <div class="carousel-item h-100">
+                <img src="{{this}}" class="d-block mx-auto h-100" alt="{{this}}">
+            </div>
+            {{/each}}
+        </div>
+        <a class="carousel-control-prev" href="#carouselSecondaryPhotos" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselSecondaryPhotos" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="d-flex flex-wrap p-4 bg-white">
+        <div class="d-flex flex-wrap mb-3 w-100">
+            <div class="d-flex flex-column property-details mb-3 mb-md-0">
+                <div class="d-inline-block d-md-none text-center mb-3">
+                    <span class="bg-gradient-custom-primary text-white px-2 py-1"
+                        {{isNew property.createdAt}}>Novedad</span>
+                    {{#if property.outstanding}}
+                    <span class="bg-gradient-custom-secondary text-white px-2 py-1">Destacada</span>
+                    {{/if}}
+                </div>
+                <div class="d-flex flex-column bg-secondary text-white px-4 py-3 h-100">
+                    <span><span class="font-weight-bold">Tipo:</span> {{property.type}}</span>
+                    <span><span class="font-weight-bold">Operación:</span> {{property.operation}}</span>
+                    <span><span class="font-weight-bold">Precio:</span>
+                        {{#if property.dollar}}U$S{{else}}${{/if}}{{property.price}}</span>
+                    <span><span class="font-weight-bold">Dirección:</span> {{property.address}}</span>
+                    <span><span class="font-weight-bold">Localidad:</span> {{property.city}}</span>
+                    <span><span class="font-weight-bold">Provincia:</span> {{property.province}}</span>
+                    {{#if property.totalRooms}}
+                    <span><span class="font-weight-bold">Ambientes:</span> {{property.totalRooms}}</span>
+                    {{/if}}
+                    {{#if property.bedrooms}}
+                    <span><span class="font-weight-bold">Dormitorios:</span> {{property.bedrooms}}</span>
+                    {{/if}}
+                    {{#if property.bathrooms}}
+                    <span><span class="font-weight-bold">Baños:</span> {{property.bathrooms}}</span>
+                    {{/if}}
+                    {{#if property.garages}}
+                    <span><span class="font-weight-bold">Cocheras:</span> {{property.garages}}</span>
+                    {{/if}}
+                    {{#if property.offices}}
+                    <span><span class="font-weight-bold">Oficinas:</span> {{property.offices}}</span>
+                    {{/if}}
+                    {{#if property.capacity}}
+                    <span><span class="font-weight-bold">Capacidad:</span> {{property.capacity}} huéspedes</span>
+                    {{/if}}
+                    {{#if property.activity}}
+                    <span><span class="font-weight-bold">Actividad:</span> {{property.activity}}</span>
+                    {{/if}}
+                    {{#if property.floors}}
+                    <span><span class="font-weight-bold">Pisos:</span> {{property.floors}}</span>
+                    {{/if}}
+                    {{#if property.antiquity}}
+                    <span><span class="font-weight-bold">Antigüedad:</span> {{property.antiquity}} años</span>
+                    {{/if}}
+                    {{#if property.orientation}}
+                    <span><span class="font-weight-bold">Orientación:</span> {{property.orientation}}</span>
+                    {{/if}}
+                    {{#if property.neighborhoodType}}
+                    <span><span class="font-weight-bold">Tipo de barrio:</span> {{property.neighborhoodType}}</span>
+                    {{/if}}
+                    {{#if property.totalArea}}
+                    <span><span class="font-weight-bold">Superficie total:</span> {{property.totalArea}}
+                        {{#if property.hectare}}Ha{{else}}mts{{/if}}</span>
+                    {{/if}}
+                    {{#if property.coveredArea}}
+                    <span><span class="font-weight-bold">Superficie cubierta:</span> {{property.coveredArea}} mts</span>
+                    {{/if}}
+                    {{#if property.access}}
+                    <span><span class="font-weight-bold">Tipo de acceso:</span> {{property.access}}</span>
+                    {{/if}}
+                    {{#if property.asphaltDistance}}
+                    <span><span class="font-weight-bold">Distancia al asfalto:</span> {{property.asphaltDistance}}
+                        kms</span>
+                    {{/if}}
+                    {{#if property.garageType}}
+                    <span><span class="font-weight-bold">Tipo de cochera:</span> {{property.garageType}}</span>
+                    {{/if}}
+                    {{#if property.garageAccess}}
+                    <span><span class="font-weight-bold">Acceso de cochera:</span> {{property.garageAccess}}</span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="d-flex flex-column property-description">
+                <div class="d-none d-md-inline-block text-right mb-2">
+                    <span class="bg-gradient-custom-primary text-white px-2 py-1"
+                        {{isNew property.createdAt}}>Novedad</span>
+                    {{#if property.outstanding}}
+                    <span class="bg-gradient-custom-secondary text-white px-2 py-1">Destacada</span>
+                    {{/if}}
+                </div>
+                <div class="px-3 text-secondary">
+                    <p>{{property.description}}</p>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-secondary">Características</h3>
+        <div class="property-features d-flex flex-wrap bg-light py-3 px-4 w-100 mb-3">
+            {{#each property.features}}
+            <div class="property-features-item">
+                <span class="text-secondary"><i class="fas fa-caret-right"></i> {{this}}</span>
+            </div>
+            {{/each}}
+        </div>
+        {{#if property.youtubePath}}
+        <iframe class="property-video mb-3" src="https://www.youtube.com/embed/{{property.youtubePath}}" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {{/if}}
+        <div class="property-map" id="property-map">
+            <input type="hidden" id="property-lat" value="{{property.location.[0]}}">
+            <input type="hidden" id="property-lng" value="{{property.location.[1]}}">
+            <input type="hidden" id="property-address" value="{{property.address}}">
+        </div>
+    </div>
+</div>

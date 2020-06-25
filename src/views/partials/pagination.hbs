@@ -1,0 +1,39 @@
+{{#if pagination.visible}}
+<nav aria-label="Page navigation example" class="mb-5 mt-4">
+    <ul class="pagination justify-content-center">
+        {{#if pagination.currentFirst}}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        {{else}}
+        <li class="page-item">
+            <a class="page-link" 
+                href="{{#if admin}}/admin/properties{{/if}}/{{#if search}}search/{{/if}}{{pagination.prev}}{{#if search}}?searchOperation={{formFields.searchOperation}}&searchType={{formFields.searchType}}&searchCity={{formFields.searchCity}}&searchProvince={{formFields.searchProvince}}&searchBedrooms={{formFields.searchBedrooms}}&searchPriceMin={{formFields.searchPriceMin}}&searchPriceMax={{formFields.searchPriceMax}}&searchIsDollar={{formFields.searchIsDollar}}&searchAreaMin={{formFields.searchAreaMin}}&searchAreaMax={{formFields.searchAreaMax}}&searchIsHectare={{formFields.searchIsHectare}}&searchIsCoveredArea={{formFields.searchIsCoveredArea}}&searchServices={{formFields.searchServices}}&searchNeighborhood={{formFields.searchNeighborhood}}&searchExpenses={{formFields.searchExpenses}}{{/if}}">
+                Previous
+            </a>
+        </li>
+        {{/if}}
+
+        {{#each pagination.pages}}
+        <li class="page-item {{isCurrentPage this ../pagination.current}}" aria-current="{{isCurrentPageTwo this ../pagination.current}}">
+            <a class="page-link" 
+            href="{{#if ../admin}}/admin/properties{{/if}}/{{#if ../search}}search/{{/if}}{{this}}{{#if ../search}}?searchOperation={{../formFields.searchOperation}}&searchType={{../formFields.searchType}}&searchCity={{../formFields.searchCity}}&searchProvince={{../formFields.searchProvince}}&searchBedrooms={{../formFields.searchBedrooms}}&searchPriceMin={{../formFields.searchPriceMin}}&searchPriceMax={{../formFields.searchPriceMax}}&searchIsDollar={{../formFields.searchIsDollar}}&searchAreaMin={{../formFields.searchAreaMin}}&searchAreaMax={{../formFields.searchAreaMax}}&searchIsHectare={{../formFields.searchIsHectare}}&searchIsCoveredArea={{../formFields.searchIsCoveredArea}}&searchServices={{../formFields.searchServices}}&searchNeighborhood={{../formFields.searchNeighborhood}}&searchExpenses={{../formFields.searchExpenses}}{{/if}}">
+                {{this}}
+            </a>
+        </li>
+        {{/each}}
+        {{#if pagination.currentLast}}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+        </li>
+        {{else}}
+        <li class="page-item">
+            <a class="page-link" 
+                href="{{#if admin}}/admin/properties{{/if}}/{{#if search}}search/{{/if}}{{pagination.next}}{{#if search}}?searchOperation={{formFields.searchOperation}}&searchType={{formFields.searchType}}&searchCity={{formFields.searchCity}}&searchProvince={{formFields.searchProvince}}&searchBedrooms={{formFields.searchBedrooms}}&searchPriceMin={{formFields.searchPriceMin}}&searchPriceMax={{formFields.searchPriceMax}}&searchIsDollar={{formFields.searchIsDollar}}&searchAreaMin={{formFields.searchAreaMin}}&searchAreaMax={{formFields.searchAreaMax}}&searchIsHectare={{formFields.searchIsHectare}}&searchIsCoveredArea={{formFields.searchIsCoveredArea}}&searchServices={{formFields.searchServices}}&searchNeighborhood={{formFields.searchNeighborhood}}&searchExpenses={{formFields.searchExpenses}}{{/if}}">
+                Next
+            </a>
+        </li>
+        {{/if}}
+    </ul>
+</nav>
+{{/if}}

@@ -1,0 +1,17 @@
+<div class="container">
+    <h3 class="mt-3"><span class="font-weight-light">Lista de </span>usuarios <span class="font-weight-light">registrados</span></h3>
+    <hr>
+    <ul class="list-group shadow-sm  mt-3">
+        {{#each users}}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{email}}
+            <form action="/admin/users/{{_id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-link text-danger" type="submit">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
+        </li>
+        {{/each}}
+    </ul>
+</div>

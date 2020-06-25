@@ -1,0 +1,103 @@
+<div class="bg-gradient-custom-footer shadow pb-5">
+    <div
+        class="container text-white d-flex flex-column flex-lg-row justify-content-around align-items-center py-2 pb-5">
+        <div class="d-flex flex-column py-3 align-self-stretch">
+            <h3 class="font-weight-light text-center mx-5 mt-5 mt-lg-0">Contactanos</h3>
+            <div class="d-xl-flex flex-column my-auto px-5 d-none">
+                <a href="{{contactData.phoneLink}}"
+                    class="d-flex flex-row text-white text-decoration-none pr-md-3 mr-auto mt-3">
+                    <div class="align-self-center px-3">
+                        <i style="font-size: 1.5em" class="fas fa-phone"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="">
+                            <span class="font-weight-bold text-navbar">{{contactData.phone}}</span>
+                        </div>
+                        <div class="pl-2 mt-text-navbar">
+                            <span class="text-navbar">Teléfono celular</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{contactData.whatsappLink}}"
+                    class="d-flex flex-row text-white text-decoration-none pr-md-3 mr-auto mt-3"
+                    rel="noopener noreferrer" target="_blank">
+                    <div class="align-self-center px-3">
+                        <i style="font-size: 1.7em" class="fab fa-whatsapp text-primary"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="">
+                            <span class="font-weight-bold text-navbar">{{contactData.whatsappNumber}}</span>
+                        </div>
+                        <div class="pl-2 mt-text-navbar">
+                            <span class="text-navbar">Whatsapp</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{contactData.mailLink}}" target="_blank" rel="noopener noreferrer"
+                    class="font-weight-bold text-decoration-none text-white d-flex align-items-center mt-4">
+                    <i class="fas fa-envelope mr-2 icon-navbar align-self-center px-3"></i>
+                    <span class="align-text-bottom"> {{contactData.mail}}</span>
+                </a>
+            </div>
+            <div class="d-xl-none d-flex flex-row align-self-center my-lg-auto my-5 px-5">
+                <a href="{{contactData.phoneLink}}" class="d-flex flex-row text-white text-decoration-none">
+                    <i class="fas fa-phone icon-navbar align-self-center px-3"></i>
+                </a>
+                <a href="{{contactData.whatsappLink}}" class="d-flex flex-row text-white text-decoration-none"
+                    rel="noopener noreferrer" target="_blank">
+                    <i class="fab fa-whatsapp icon-navbar-wa text-primary align-self-center px-3"></i>
+                </a>
+                <a href="{{contactData.mailLink}}" target="_blank" rel="noopener noreferrer"
+                    class="font-weight-bold text-decoration-none text-white d-flex align-items-center">
+                    <i class="fas fa-envelope mr-2 icon-navbar align-self-center px-3"></i>
+                </a>
+            </div>
+            <div class="py-4"></div>
+        </div>
+        <div class="d-flex flex-column py-3 align-self-stretch">
+            <h3 class="font-weight-light text-center mx-5">Seguinos</h3>
+            <div class="d-flex align-self-center h-100 border-footer px-5 my-5">
+                <div class="d-flex flex-row my-auto">
+                    <a href="{{contactData.facebook}}" class="text-decoration-none text-white mx-3"
+                        rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-facebook icon-search"></i>
+                    </a>
+                    <a href="{{contactData.instagram}}" class="text-decoration-none text-white mx-3"
+                        rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-instagram icon-search"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="py-4"></div>
+        </div>
+        <div id="contact-form-footer" class="d-flex flex-column flex-grow-1 py-3 align-self-stretch">
+            <h3 class="font-weight-light text-center mx-sm-5">Dejanos tu mensaje</h3>
+            <form class="d-flex flex-column mt-4 px-sm-5 px-3" action="/send_contact_form" method="POST">
+                <div class="form-group" id="name-contact-form-footer">
+                    <input type="text" name="name" id="" placeholder="Nombre completo" class="form-control">
+                </div>
+                <div class="form-group d-flex align-items-stretch" id="phone-contact-form-footer">
+                    <input type="number" class="form-control border-0" name="phone" placeholder="Teléfono">
+                    <div class="d-flex align-items-center pl-2" title="Obligatorio">
+                        <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-stretch" id="mail-contact-form-footer">
+                    <input type="email" class="form-control border-0" name="email" maxlength="50"
+                        placeholder="Correo Electrónico">
+                    <div class="d-flex align-items-center pl-2" title="Obligatorio">
+                        <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                </div>
+                <div class="form-group" id="msg-contact-form-footer">
+                    <textarea class="form-control" name="message" id="" rows="4" maxlength="150"
+                        placeholder="Mensaje"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" name="submit"
+                        class="btn bg-gradient-custom-primary text-white w-50 d-block ml-auto">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

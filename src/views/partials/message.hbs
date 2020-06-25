@@ -1,0 +1,35 @@
+{{#if msg_success}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="text-center mb-0">{{msg_success}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+{{#if msg_error}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="text-center mb-0">{{msg_error}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="text-center mb-0">{{error}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+{{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="text-center mb-0">{{text}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/each}}

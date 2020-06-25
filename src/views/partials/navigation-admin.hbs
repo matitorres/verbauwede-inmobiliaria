@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-gradient-custom-navbar shadow-sm">
+    <div class="container">
+        <nav class="navbar navbar-light py-0">
+            <a class="navbar-brand my-2" href="/admin/properties/1">
+                <img src="/img/logo.svg" height="110" alt="Verbauwede Inmobiliaria">
+            </a>
+        </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {{#if user}}
+            <ul class="navbar-nav mx-auto ml-md-auto mr-md-5">
+                <li class="nav-item dropdown mx-auto pr-sm-3">
+                    <a class="nav-link text-uppercase text-center" href="#" id="propertyDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Propiedades
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="propertyDropdown">
+                        <a class="dropdown-item" href="/admin/properties/1">Ver propiedades</a>
+                        <a class="dropdown-item" href="#" id="addPropertyDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Agregar propiedad
+                        </a>
+                        <div class="dropdown-menu bg-gradient-custom-secondary" aria-labelledby="addPropertyDropdown">
+                            {{#each propertyFormValues.enumType}}
+                                <a class="dropdown-item hover-black text-white" href="/admin/properties/add/{{this}}">{{this}}</a>
+                            {{/each}}
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown mx-auto pl-sm-3 border-left">
+                    <a class="nav-link text-uppercase text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/admin/users">Ver usuarios</a>
+                        <a class="dropdown-item" href="/admin/signup">Agregar usuario</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/logout">Salir</a>
+                    </div>
+                </li>
+            </ul>
+            {{/if}}
+        </div>
+    </div>
+</nav>
