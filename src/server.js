@@ -18,7 +18,8 @@ const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
-const passport = require('passport')
+const passport = require('passport');
+const { ProcessCredentials } = require('aws-sdk');
 
 // Init
 const app = express()
@@ -44,7 +45,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride('_method'))
 app.use(session({
-    secret: 'secret',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie: { secure: false }

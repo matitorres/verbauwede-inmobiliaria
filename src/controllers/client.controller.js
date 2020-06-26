@@ -37,7 +37,7 @@ const {
     enumGarageAccess,
     enumServices,
     perPage,
-    tokenBCRA } = require('../public/values').default
+    tokenBCRA } = require('../public/values')
 
 const propertyFormValues = {
     enumOperation,

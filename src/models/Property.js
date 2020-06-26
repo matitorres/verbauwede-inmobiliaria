@@ -13,7 +13,7 @@ const {
     enumAccess,
     enumGarageType,
     enumGarageAccess 
-} = require('../public/values').default
+} = require('../public/values')
 
 const arr = [enumFeaturesCasa, enumFeaturesCampo, enumFeaturesCochera, enumFeaturesNegocio, enumFeaturesOtros]
 const enumFeatures = [...new Set([].concat(...arr))]

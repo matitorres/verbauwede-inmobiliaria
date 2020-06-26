@@ -49,4 +49,4 @@ const values = {
     perPage: 15,
 }
 
-export default values
+module.exports = values

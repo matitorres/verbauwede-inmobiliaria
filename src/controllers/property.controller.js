@@ -16,7 +16,7 @@ const {
     enumAccess,
     enumGarageType,
     enumGarageAccess,
-    perPage } = require('../public/values').default
+    perPage } = require('../public/values')
 const { diacriticSensitiveRegex } = require('../helpers/libs')
 
 const AWS = require('aws-sdk')
