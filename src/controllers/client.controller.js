@@ -144,6 +144,7 @@ clientCtrl.sendContactForm = (req, res) => {
     if (error) {
         msg = 'Valores del formulario fuera de rango. No introduzca caracteres especiales como: " # $ % & / ( ) = | ° > < [ ] { }'
         req.flash('client_msg_error', msg)
+        res.redirect('/')
     } else {
         if (email !== '' && phone !== '') {
             let contentHTML
@@ -197,18 +198,20 @@ clientCtrl.sendContactForm = (req, res) => {
                     //console.log(err)
                     msg = 'Ha ocurrido un error al intentar enviar la consulta. Por favor vuelva a intentarlo.'
                     req.flash('client_msg_error', msg)
+                    res.redirect('/')
                 } else {
                     //console.log(data)
                     msg = '¡Muchas gracias por contactarse con nosotros! Nos comunicaremos con Ud. a la brevedad.'
                     req.flash('client_msg_success', msg)
+                    res.redirect('/')
                 }
             })
         } else {
             msg = 'Los campos \"Correo electrónico\" y \"Teléfono\" son obligatorios. Vuelva a intentarlo'
             req.flash('client_msg_error', msg)
+            res.redirect('/')
         }
     }
-    res.redirect('/')
 }
 
 const setPagination = (page, propertiesCount) => {
