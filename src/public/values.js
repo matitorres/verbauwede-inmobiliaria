@@ -9,6 +9,9 @@ const values = {
     phone: '+54 9 266 4322263',
     phoneLink: 'tel:+5492664322263',
 
+    // Photos
+    maxSecondaryPhotos: 13,
+
     // AWS S3
     bucket: 'verbauwede-inmobiliaria',
     s3BasePath: 'https://verbauwede-inmobiliaria.s3-sa-east-1.amazonaws.com/',

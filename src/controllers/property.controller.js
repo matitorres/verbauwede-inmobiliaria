@@ -801,7 +801,7 @@ const validateFiles = (body, files, editPhoto) => {
             ) { return true } else { return false }
         }
         if (propertyPhotos.some(validateType)) fileTypeError = true
-        if (files.propertyPhotos.length > 10) fileCountError = true
+        if (files.propertyPhotos.length > 13) fileCountError = true
     } else {
         if (!editPhoto) {
             fileEmptyError = true

@@ -214,6 +214,10 @@
     width: 70%;
 }
 
+.property-description-text {
+    white-space: pre-wrap;
+}
+
 .property-features-item {
     width: 25%;
 }

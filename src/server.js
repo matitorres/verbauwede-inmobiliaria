@@ -40,7 +40,7 @@ app.set('view engine', '.hbs')
 
 // Middlewares
 app.use(morgan('dev'))
-app.use(upload.fields([{ name: 'propertyPhoto', maxCount: 1 }, { name: 'propertyPhotos', maxCount: 10 }]))
+app.use(upload.fields([{ name: 'propertyPhoto', maxCount: 1 }, { name: 'propertyPhotos', maxCount: 13 }]))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride('_method'))

@@ -5,8 +5,8 @@ $(function () {
     })
 
     $("#inputPropertyPhotos").change(function () {
-        if (this.files.length > 10) {
-            alert('Puede seleccionar un máximo de 10 fotos secundarias')
+        if (this.files.length > 13) {
+            alert('Puede seleccionar un máximo de 13 fotos secundarias')
             $("#labelInputPropertyPhotos").text("Máximo de fotos excedido")
             $('#property-add-submit').attr("disabled", true);
         } else {
