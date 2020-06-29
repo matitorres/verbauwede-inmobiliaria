@@ -54,7 +54,14 @@
                     <span><span class="font-weight-bold">Tipo:</span> {{property.type}}</span>
                     <span><span class="font-weight-bold">Operación:</span> {{property.operation}}</span>
                     <span><span class="font-weight-bold">Precio:</span>
-                        {{#if property.dollar}}U$S{{else}}${{/if}}{{property.price}}</span>
+                        {{#if property.hidePrice}}
+                            Consultar</span>
+                        {{else}}
+                            {{#if property.isMinPrice}}
+                            A partir de&nbsp;
+                            {{/if}}
+                            {{#if property.dollar}}U$S{{else}}${{/if}}&nbsp;{{formatNumber property.price}}</span>
+                        {{/if}}
                     <span><span class="font-weight-bold">Dirección:</span> {{property.address}}</span>
                     <span><span class="font-weight-bold">Localidad:</span> {{property.city}}</span>
                     <span><span class="font-weight-bold">Provincia:</span> {{property.province}}</span>
