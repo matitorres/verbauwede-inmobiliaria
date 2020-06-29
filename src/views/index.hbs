@@ -1,10 +1,13 @@
 <div class="flex-fill mt-3">
+
     <h4 class="my-2 text-secondary d-flex d-md-none">
         <span class="bg-gradient-custom-secondary px-1 mr-2 rounded-right">&nbsp;</span>
         <span class="font-weight-light">Propiedades&nbsp;</span>
         destacadas
     </h4>
+
     <hr class="mt-1 d-flex d-md-none mx-4">
+
     <div class="d-flex justify-content-between" id="featured-properties-section">
         <div class="index-title-left d-none d-md-flex align-items-start bg-gradient-custom-secondary shadow my-2 mr-1">
             <img src="/img/featured-properties-title.svg" width="30" class="mx-4 my-5" alt="">
@@ -38,11 +41,10 @@
                                     {{#if totalArea}}
                                     <h6 class="text-white mb-0 mt-1 text-center">
                                         <span class="font-weight-light">Superficie</span>
-                                        {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                        {{totalArea}} {{#if hectare}}Ha{{else}}m<sup>2</sup>{{/if}}
                                     </h6>
                                     {{/if}}
-                                    <div
-                                        class="d-flex flex-wrap justify-content-around text-white font-weight-light text-center my-1 px-5">
+                                    <div class="d-flex flex-wrap justify-content-around text-white font-weight-light text-center my-1 px-5">
                                         {{#if bathrooms}}
                                         <div>
                                             <i class="fas fa-bath"></i> {{bathrooms}}
@@ -60,11 +62,26 @@
                                         {{/if}}
                                     </div>
                                 </div>
-                                <div class="featured-border-top text-truncate">
-                                    <h3 class="text-white text-center my-2">
-                                        <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
-                                        {{formatNumber price}}
-                                    </h3>
+                                <div class="featured-border-top text-white text-truncate pt-1">
+                                    {{#if hidePrice}}
+                                    <h4 class="text-center mb-0 text-truncate">
+                                        <span class="font-weight-light">Consultar precio</span>
+                                    </h4>
+                                    {{else}}
+                                    <div class="">
+                                        <h3 class="text-center mb-0 text-truncate d-flex flex-wrap justify-content-center align-items-center">
+                                            {{#if isMinPrice}}
+                                            <span class="h5 font-weight-light mb-0">A partir de&nbsp;</span>
+                                            {{/if}}
+                                            <span>
+                                                <span class="font-weight-light">
+                                                    {{#if dollar}}U$S{{else}}${{/if}}
+                                                </span>
+                                                {{formatNumber price}}
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -83,7 +100,7 @@
                                     {{#if totalArea}}
                                     <h6 class="text-white text-center mb-0 mx-2">
                                         <span class="font-weight-light">Superficie</span>
-                                        {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                        {{totalArea}} {{#if hectare}}Ha{{else}}m<sup>2</sup>{{/if}}
                                     </h6>
                                     {{/if}}
                                     {{#if bathrooms}}
@@ -102,11 +119,24 @@
                                     </div>
                                     {{/if}}
                                 </div>
-                                <div class="featured-border-top text-truncate mt-1">
-                                    <h4 class="text-white text-center mb-0 mt-2">
-                                        <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
-                                        {{formatNumber price}}
+                                <div class="featured-border-top text-white text-truncate pt-1">
+                                    {{#if hidePrice}}
+                                    <h4 class="text-center mb-0 text-truncate">
+                                        <span class="font-weight-light">Consultar precio</span>
                                     </h4>
+                                    {{else}}
+                                    <h3 class="text-center mb-0 text-truncate d-flex flex-wrap justify-content-center align-items-center">
+                                        {{#if isMinPrice}}
+                                        <span class="h5 font-weight-light mb-0">A partir de&nbsp;</span>
+                                        {{/if}}
+                                        <span>
+                                            <span class="font-weight-light">
+                                                {{#if dollar}}U$S{{else}}${{/if}}
+                                            </span>
+                                            {{formatNumber price}}
+                                        </span>
+                                    </h3>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -116,22 +146,26 @@
             {{/each}}
         </div>
     </div>
+
     {{#if customProperties}}
     <h4 class="text-secondary d-flex d-md-none mb-2 mt-5">
         <span class="bg-gradient-custom-primary px-1 mr-2 rounded-right">&nbsp;</span>
         <span class="font-weight-light">Recomendadas&nbsp;</span>
         para ti
     </h4>
+
     <hr class="mt-1 mx-4 d-flex mx-md-5 my-md-5">
+
     <div class="d-flex justify-content-between align-items-stretch" id="custom-properties-section">
         <div class="index-properties-right d-flex flex-column">
             {{#each customProperties}}
             <a href="/property/{{_id}}"
                 class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item rounded-lg shadow overflow-hidden {{#if outstanding}}bg-gradient-custom-outstanding{{else}}bg-white{{/if}}">
-                <div class="overflow-hidden position-relative property-list-img">
+                <div class="property-list-img overflow-hidden position-relative">
                     <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
                         alt="Foto de {{address}}">
-                    <div class="d-flex d-md-none justify-content-end position-relative text-white text-center mb-auto mt-1">
+                    <div
+                        class="d-flex d-md-none justify-content-end position-relative text-white text-center mb-auto mt-1">
                         <div class="bg-gradient-custom-secondary px-3 mr-1 pb-1" {{isNew createdAt}}>
                             <small class="text-uppercase">Novedad</small>
                         </div>
@@ -140,9 +174,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-column property-list-content py-3 px-4">
+                <div class="property-list-content d-flex flex-column py-3 px-4">
                     <div class="d-flex flex-row justify-content-between item-border-bottom">
-                        <div class="d-flex flex-column overflow-hidden">
+                        <div class="d-flex flex-column overflow-hidden mx-auto mx-md-0">
                             <h4 class="text-truncate mb-0 pb-1">{{type}}</h4>
                             <h6 class="font-weight-light text-truncate">
                                 {{address}}, {{city}}, {{province}}
@@ -163,10 +197,10 @@
                         </div>
                         <div class="d-flex flex-wrap flex-md-nowrap justify-content-md-between mb-1">
                             {{#if totalArea}}
-                            <div class="d-flex flex-wrap flex-md-nowrap justify-content-center property-list-features mt-md-auto text-truncate">
+                            <div class="property-list-features d-flex justify-content-center mt-md-auto text-truncate">
                                 <h6 class="mb-0 text-center mx-2">
                                     <span class="font-weight-light">Superficie: </span>
-                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m<sup>2</sup>{{/if}}
                                 </h6>
                                 <div class="d-flex">
                                     {{#if bathrooms}}
@@ -187,11 +221,24 @@
                                 </div>
                             </div>
                             {{/if}}
-                            <div class="ml-auto property-list-price my-2 my-md-0">
-                                <h3 class="text-center mb-0 text-truncate">
-                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
-                                    {{formatNumber price}}
+                            <div class="property-list-price ml-auto my-2 my-md-0">
+                                {{#if hidePrice}}
+                                <h4 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">Consultar precio</span>
+                                </h4>
+                                {{else}}
+                                <h3 class="text-center mb-0 text-truncate d-flex flex-wrap justify-content-center align-items-center">
+                                    {{#if isMinPrice}}
+                                    <span class="h5 font-weight-light mb-0 text-secondary">A partir de&nbsp;</span>
+                                    {{/if}}
+                                    <span>
+                                        <span class="font-weight-light">
+                                            {{#if dollar}}U$S{{else}}${{/if}}
+                                        </span>
+                                        {{formatNumber price}}
+                                    </span>
                                 </h3>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -207,12 +254,15 @@
             </div> --}}
     </div>
     {{/if}}
+
     <h4 class="text-secondary d-flex d-md-none mb-2 mt-5">
         <span class="bg-gradient-custom-light px-1 mr-2 rounded-right">&nbsp;</span>
         Nuevas
         <span class="font-weight-light">&nbsp;propiedades</span>
     </h4>
+
     <hr class="mt-1 mx-4 d-flex mx-md-5 my-md-5">
+
     <div class="d-flex justify-content-between align-items-stretch mt-3 mb-5" id="latest-properties-section">
         <div class="index-title-left d-none d-md-flex align-items-start bg-gradient-custom-light-reverse shadow mb-3 mr-3">
             <img src="/img/latest-properties-title.svg" width="30" class="mx-4 my-5" alt="">
@@ -224,7 +274,7 @@
             {{#each latestProperties}}
             <a href="/property/{{_id}}"
                 class="d-flex flex-wrap mb-3 text-decoration-none text-secondary property-list-item rounded-lg shadow overflow-hidden {{#if outstanding}}bg-gradient-custom-outstanding{{else}}bg-white{{/if}}">
-                <div class="overflow-hidden position-relative property-list-img">
+                <div class="property-list-img overflow-hidden position-relative">
                     <img src="{{primaryPhotoPath}}" class="position-absolute item-img-center w-100"
                         alt="Foto de {{address}}">
                     <div
@@ -237,9 +287,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-column property-list-content py-3 px-4">
+                <div class="property-list-content d-flex flex-column py-3 px-4">
                     <div class="d-flex flex-row justify-content-between item-border-bottom">
-                        <div class="d-flex flex-column overflow-hidden">
+                        <div class="d-flex flex-column overflow-hidden mx-auto mx-md-0">
                             <h4 class="text-truncate mb-0 pb-1">{{type}}</h4>
                             <h6 class="font-weight-light text-truncate">
                                 {{address}}, {{city}}, {{province}}
@@ -258,12 +308,12 @@
                         <div class="d-none d-sm-flex property-list-description">
                             <p class="item-p my-2 mr-2">{{description}}</p>
                         </div>
-                        <div class="d-flex flex-wrap flex-md-nowrap justify-content-md-between mb-1">
+                        <div class="d-flex flex-wrap flex-md-nowrap justify-content-md-between align-items-center mb-1">
                             {{#if totalArea}}
-                            <div class="d-flex justify-content-center property-list-features mt-md-auto text-truncate">
+                            <div class="property-list-features d-flex justify-content-center text-truncate">
                                 <h6 class="mb-0 text-center mx-2">
                                     <span class="font-weight-light">Superficie: </span>
-                                    {{totalArea}} {{#if hectare}}Ha{{else}}m2{{/if}}
+                                    {{totalArea}} {{#if hectare}}Ha{{else}}m<sup>2</sup>{{/if}}
                                 </h6>
                                 <div class="d-flex">
                                     {{#if bathrooms}}
@@ -284,11 +334,24 @@
                                 </div>
                             </div>
                             {{/if}}
-                            <div class="ml-auto property-list-price my-2 my-md-0">
-                                <h3 class="text-center mb-0 text-truncate">
-                                    <span class="font-weight-light">{{#if dollar}}U$S{{else}}${{/if}}</span>
-                                    {{formatNumber price}}
+                            <div class="property-list-price ml-auto my-2 my-md-0">
+                                {{#if hidePrice}}
+                                <h4 class="text-center mb-0 text-truncate">
+                                    <span class="font-weight-light">Consultar precio</span>
+                                </h4>
+                                {{else}}
+                                <h3 class="text-center mb-0 text-truncate d-flex flex-wrap justify-content-center align-items-center">
+                                    {{#if isMinPrice}}
+                                    <span class="h5 font-weight-light mb-0 text-secondary">A partir de&nbsp;</span>
+                                    {{/if}}
+                                    <span>
+                                        <span class="font-weight-light">
+                                            {{#if dollar}}U$S{{else}}${{/if}}
+                                        </span>
+                                        {{formatNumber price}}
+                                    </span>
                                 </h3>
+                                {{/if}}
                             </div>
                         </div>
                     </div>

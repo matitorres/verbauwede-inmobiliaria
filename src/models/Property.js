@@ -167,6 +167,14 @@ const propertySchema = new Schema({
         type: Boolean,
         required: true
     },
+    hidePrice: {
+        type: Boolean,
+        required: true
+    },
+    isMinPrice: {
+        type: Boolean,
+        required: true
+    },
     location: {
         type: [Number],
         required: true

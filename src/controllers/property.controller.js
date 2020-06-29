@@ -292,41 +292,6 @@ propertyCtrl.updateProperty = async (req, res) => {
             res.render('properties/form', { admin, propertyForm, propertyFormValues, formFields, edit, errors })
         } else {
 
-            console.log(formFields)
-
-            console.log({
-                type: formFields.type,
-                outstanding: (formFields.outstanding === '1') ? true : false,
-                province: formFields.province || null,
-                city: formFields.city || null,
-                address: formFields.address || null,
-                location: [formFields.lat, formFields.lng],
-                description: formFields.description,
-                operation: formFields.operation,
-                price: formFields.price,
-                dollar: (formFields.dollar) ? true : false,
-                youtubePath: formFields.youtubePath || null,
-                neighborhoodType: formFields.neighborhoodType || null,
-                totalArea: formFields.totalArea || null,
-                hectare: formFields.hectare || false,
-                coveredArea: formFields.coveredArea || null,
-                activity: formFields.activity || null,
-                access: formFields.access || null,
-                asphaltDistance: formFields.asphaltDistance || null,
-                bedrooms: formFields.bedrooms || null,
-                capacity: formFields.capacity || null,
-                offices: formFields.offices || null,
-                bathrooms: formFields.bathrooms || null,
-                garages: formFields.garages || null,
-                totalRooms: formFields.totalRooms || null,
-                floors: formFields.floors || null,
-                antiquity: formFields.antiquity || null,
-                orientation: formFields.orientation || null,
-                garageType: formFields.garageType || null,
-                garageAccess: formFields.garageAccess || null,
-                features: formFields.features || []
-            })
-
             await Property.findByIdAndUpdate(req.body._id, {
                 type: formFields.type,
                 outstanding: (formFields.outstanding === '1') ? true : false,
@@ -338,6 +303,8 @@ propertyCtrl.updateProperty = async (req, res) => {
                 operation: formFields.operation,
                 price: formFields.price,
                 dollar: (formFields.dollar) ? true : false,
+                hidePrice: (formFields.hidePrice) ? true : false,
+                isMinPrice: (formFields.isMinPrice) ? true : false,
                 youtubePath: formFields.youtubePath || null,
                 neighborhoodType: formFields.neighborhoodType || null,
                 totalArea: formFields.totalArea || null,
@@ -830,6 +797,8 @@ const setProperty = () => {
         operation: formFields.operation,
         price: formFields.price,
         dollar: (formFields.dollar) ? true : false,
+        hidePrice: (formFields.hidePrice) ? true : false,
+        isMinPrice: (formFields.isMinPrice) ? true : false,
         secondaryPhotosPaths: [],
         youtubePath: formFields.youtubePath || null,
         neighborhoodType: formFields.neighborhoodType || null,
