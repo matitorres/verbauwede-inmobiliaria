@@ -18,7 +18,7 @@ const values = {
 
     // enums for models
     enumOperation: ['Venta', 'Alquiler', 'Alquiler temporal'],
-    enumType: ['Casa', 'Departamento', 'Terreno - lote', 'Campo', 'Local', 'Oficina', 'Cocheras', 
+    enumType: ['Casa', 'Departamento', 'Terreno - Lote', 'Campo', 'Local', 'Oficina', 'Cocheras', 
     'Hotel - Complejo turístico', 'Galpón - Depósito', 'Negocio - Fondo de comercio',
     'Monoambiente', 'Dúplex - PH', 'Cabaña', 'Otros'],
     enumOrientation: [null, 'Norte', 'Este', 'Sur', 'Oeste'],

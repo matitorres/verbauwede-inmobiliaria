@@ -61,7 +61,8 @@ const search = true
 const contactData = { mail, mailLink, facebook, instagram, whatsappNumber, whatsappLink, phone, phoneLink }
 
 clientCtrl.renderIndex = async (req, res) => {
-    const featuredProperties = await Property.find({ outstanding: true }).sort({ createdAt: 'desc' }).limit(4)
+    const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 3
+    const featuredProperties = await Property.find({ outstanding: true }).limit(4).skip(Math.floor(Math.random() * featuredPropertiesCount))
     const latestProperties = await Property.find().sort({ createdAt: 'desc' }).limit(5)
     let customProperties
     if (req.cookies.customProperties) {
@@ -120,9 +121,9 @@ clientCtrl.renderSearch = async (req, res) => {
         const properties = await Property.find(filters)
             .skip((perPage * page) - perPage)
             .limit(perPage)
-            .sort({ createdAt: 'desc' })
+            .sort({ outstanding: 'desc' })
 
-        const featuredPropertiesCount = await Property.countDocuments({ outstanding: true })
+        const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 1
         const featuredProperties = await Property.find({ outstanding: true }).limit(2).skip(Math.floor(Math.random() * featuredPropertiesCount))
 
         res.render('properties/search-properties', { contactData, search, properties, featuredProperties, pagination, propertyFormValues, formFields })
