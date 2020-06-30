@@ -62,7 +62,10 @@ const contactData = { mail, mailLink, facebook, instagram, whatsappNumber, whats
 
 clientCtrl.renderIndex = async (req, res) => {
     const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 4
-    const featuredProperties = await Property.find({ outstanding: true }).limit(4).skip(Math.round(Math.random() * featuredPropertiesCount))
+    const skipValue = Math.round(Math.random() * featuredPropertiesCount)
+    const randomBit = Math.round(Math.random() * 1)
+    const sortValue = (randomBit === 1) ? 'desc' : 'asc'
+    const featuredProperties = await Property.find({ outstanding: true }).sort({createdAt: sortValue}).limit(4).skip(skipValue)
     const latestProperties = await Property.find().sort({ createdAt: 'desc' }).limit(5)
     let customProperties
     if (req.cookies.customProperties) {
