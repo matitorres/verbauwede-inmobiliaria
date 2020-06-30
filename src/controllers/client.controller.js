@@ -61,8 +61,8 @@ const search = true
 const contactData = { mail, mailLink, facebook, instagram, whatsappNumber, whatsappLink, phone, phoneLink }
 
 clientCtrl.renderIndex = async (req, res) => {
-    const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 3
-    const featuredProperties = await Property.find({ outstanding: true }).limit(4).skip(Math.floor(Math.random() * featuredPropertiesCount))
+    const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 4
+    const featuredProperties = await Property.find({ outstanding: true }).limit(4).skip(Math.round(Math.random() * featuredPropertiesCount))
     const latestProperties = await Property.find().sort({ createdAt: 'desc' }).limit(5)
     let customProperties
     if (req.cookies.customProperties) {
@@ -79,12 +79,12 @@ clientCtrl.renderIndex = async (req, res) => {
             } else {
                 filterAux = { type: type, outstanding: true }
             }
-            let auxPropertiesCount = await Property.countDocuments(filterAux)
+            let auxPropertiesCount = await Property.countDocuments(filterAux) - 2
             if (auxPropertiesCount === 0) {
                 filterAux = { operation: 'Venta', outstanding: true }
-                auxPropertiesCount = await Property.countDocuments(filterAux)
+                auxPropertiesCount = await Property.countDocuments(filterAux) - 2
             }
-            const auxProperties = await Property.find(filterAux).limit(2).skip(Math.floor(Math.random() * auxPropertiesCount))
+            const auxProperties = await Property.find(filterAux).limit(2).skip(Math.round(Math.random() * auxPropertiesCount))
             customProperties = customProperties.concat(auxProperties)
         }
     }
@@ -123,8 +123,8 @@ clientCtrl.renderSearch = async (req, res) => {
             .limit(perPage)
             .sort({ outstanding: 'desc' })
 
-        const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 1
-        const featuredProperties = await Property.find({ outstanding: true }).limit(2).skip(Math.floor(Math.random() * featuredPropertiesCount))
+        const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 2
+        const featuredProperties = await Property.find({ outstanding: true }).limit(2).skip(Math.round(Math.random() * featuredPropertiesCount))
 
         res.render('properties/search-properties', { contactData, search, properties, featuredProperties, pagination, propertyFormValues, formFields })
 
