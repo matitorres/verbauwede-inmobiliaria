@@ -495,7 +495,7 @@ const setPropertyForm = type => {
         if (type === 'Hotel - Complejo turístico') {
             propertyForm = { casa: true, hotel: true }
         }
-    } else if (type === 'Terreno - lote'
+    } else if (type === 'Terreno - Lote'
         || type === 'Campo'
     ) {
         propertyForm = { campo: true }
@@ -632,7 +632,7 @@ const validatePropertyForm = (body, files, edit) => {
             }
         }
 
-    } else if (body.type === 'Terreno - lote'
+    } else if (body.type === 'Terreno - Lote'
         || body.type === 'Campo'
     ) {
         propertyFormValues.enumFeatures = enumFeaturesCampo
