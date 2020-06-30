@@ -2,7 +2,7 @@ if ($('#map-add-form').length > 0) {
     // Init Add form map
     var map = L.map('map-add-form').setView([-33.867875, -65.951231], 6);
 
-    L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
@@ -36,7 +36,7 @@ if ($('#property-map').length > 0) {
     // Init Add form map
     var map = L.map('property-map').setView(location, 15);
 
-    L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
