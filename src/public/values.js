@@ -4,6 +4,7 @@ const values = {
     mailLink: 'mailto:verbauwedeinmobiliaria@gmail.com?Subject=Solicitud%20de%20información',
     facebook: 'https://www.facebook.com/VIRealState/',
     instagram: 'https://instagram.com/verbauwede_inmobiliaria?igshid=gkuxldmvkpfw',
+    blog: 'https://verbauwedeinmobiliaria.blogspot.com/',
     whatsappNumber: '+54 9 266 4322263',
     whatsappLink: 'https://wa.me/5492664322263?text=Hola!%20Necesito%20comunicarme%20con%20ustedes.',
     phone: '+54 9 266 4322263',

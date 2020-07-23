@@ -23,6 +23,7 @@ const {
     mailLink,
     facebook,
     instagram,
+    blog,
     whatsappNumber,
     whatsappLink,
     phone,
@@ -58,7 +59,7 @@ let contactFormFields
 let pagination = {}
 let msg = ''
 const search = true
-const contactData = { mail, mailLink, facebook, instagram, whatsappNumber, whatsappLink, phone, phoneLink }
+const contactData = { mail, mailLink, facebook, instagram, blog, whatsappNumber, whatsappLink, phone, phoneLink }
 
 clientCtrl.renderIndex = async (req, res) => {
     const featuredPropertiesCount = await Property.countDocuments({ outstanding: true }) - 4

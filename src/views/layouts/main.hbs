@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta property="og:site_name" content="verbauwedeinmobiliaria.com.ar">
-	<meta property="og:title" content="Verbauwede Inmobiliaria" />
-	<meta property="og:description" content="Servicios inmobiliarios en San Luis, Argentina" />
-	<meta property="og:image:secure_url" itemprop="image" content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png"/>
-	<meta property="og:image" itemprop="image" content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png"/>
-	<meta property="og:url" content="https://www.verbauwedeinmobiliaria.com.ar/">
-	<meta itemprop="thumbnailUrl" content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png"/>
-	<meta property="og:type" content="website" />
+    <meta property="og:site_name" content="verbauwedeinmobiliaria.com.ar">
+    <meta property="og:title" content="Verbauwede Inmobiliaria" />
+    <meta property="og:description" content="Servicios inmobiliarios en San Luis, Argentina" />
+    <meta property="og:image:secure_url" itemprop="image"
+        content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png" />
+    <meta property="og:image" itemprop="image"
+        content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png" />
+    <meta property="og:url" content="https://www.verbauwedeinmobiliaria.com.ar/">
+    <meta itemprop="thumbnailUrl" content="https://www.verbauwedeinmobiliaria.com.ar/img/logo-social.png" />
+    <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="updatedtime">
     <meta property="og:locale" content="en_GB" />
-    <title>Verbauwede Inmobiliaria</title>
+    <title>Verbauwede Inmobiliaria - Propiedades en San Luis, Argentina</title>
     <link rel="icon" href="/img/favicon.svg">
     <!-- LEAFLET -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -24,6 +26,15 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/bsStyle.css">
     <link rel="stylesheet" href="/css/custom.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173380513-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173380513-1');
+    </script>
 </head>
 
 <body data-spy="scroll">
@@ -47,17 +58,17 @@
     {{>banner-owners}}
     {{>search}}
     {{/if}}
-    
+
     {{>float-button}}
 
     {{/if}}
 
     <div class="bg-gradient-custom-body min-vh-100 d-flex flex-column pt-md-3">
 
-            {{>client-message}}
-            {{>message}}
+        {{>client-message}}
+        {{>message}}
 
-            {{{body}}}
+        {{{body}}}
 
         <div class="w-100 mt-auto">
             {{#if admin}}
@@ -95,8 +106,7 @@
         crossorigin="anonymous"></script>
     <!-- JQUERY -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" 
-        crossorigin="anonymous"></script>
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/f89fa30999.js" crossorigin="anonymous"></script>
     <!-- CUSTOM SCRIPTS -->
