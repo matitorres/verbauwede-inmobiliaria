@@ -950,7 +950,7 @@ const updatePhotosToServer = async (files, property) => {
                 })
     
             // Update primary photo
-            urlPhoto = property.photosFolder.replace('./', '') + '/1' + primaryPhoto.ext
+            urlPhoto = property.photosFolder.replace('./', '') + '/1.' + primaryPhoto.ext
             property.primaryPhotoPath = urlPhoto.replace('src/public', '')
             await sharp(primaryPhoto.buffer)
                 .resize({
