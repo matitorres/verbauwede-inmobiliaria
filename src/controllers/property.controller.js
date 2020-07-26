@@ -950,11 +950,12 @@ const updatePhotosToServer = async (files, property) => {
                 })
     
             // Update primary photo
-            urlPhoto = property.photosFolder.replace('./', '') + '/1.' + primaryPhoto.ext
+            urlPhoto = property.photosFolder.replace('./', '') + '/1.webp'
             property.primaryPhotoPath = urlPhoto.replace('src/public', '')
             await sharp(primaryPhoto.buffer)
+                .toFormat('webp')
                 .resize({
-                    height: 1080,
+                    height: 400,
                     withoutEnlargement: true
                 })
                 .withMetadata()
@@ -997,7 +998,7 @@ const updatePhotosToServer = async (files, property) => {
                     urlPhoto = property.photosFolder.replace('./', '') + '/' + indice + '.' + ext
                     await sharp(secondaryPhoto.buffer)
                         .resize({
-                            height: 1080,
+                            height: 400,
                             withoutEnlargement: true
                         })
                         .withMetadata()
