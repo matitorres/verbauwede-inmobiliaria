@@ -59,6 +59,7 @@ let contactFormFields
 let pagination = {}
 let msg = ''
 const search = true
+const map = true
 const contactData = { mail, mailLink, facebook, instagram, blog, whatsappNumber, whatsappLink, phone, phoneLink }
 
 clientCtrl.renderIndex = async (req, res) => {
@@ -139,7 +140,7 @@ clientCtrl.renderSearch = async (req, res) => {
 
 clientCtrl.renderProperty = async (req, res) => {
     const property = await Property.findById(req.params.id)
-    res.render('properties/property', { contactData, property, propertyFormValues })
+    res.render('properties/property', { contactData, property, propertyFormValues, map })
 }
 
 clientCtrl.sendContactForm = (req, res) => {

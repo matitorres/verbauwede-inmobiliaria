@@ -36,6 +36,7 @@ const admin = true
 const propertiesList = true
 const edit = true
 const search = true
+const map = true
 const propertyFormValues = {
     enumOperation,
     enumType,
@@ -179,7 +180,7 @@ propertyCtrl.searchProperties = async (req, res) => {
 propertyCtrl.renderAddPropertyForm = (req, res) => {
     const type = req.params.type
     setPropertyForm(type)
-    res.render('properties/form', { admin, propertyForm, propertyFormValues, type })
+    res.render('properties/form', { admin, propertyForm, propertyFormValues, type, map })
 }
 
 propertyCtrl.addProperty = async (req, res) => {
@@ -276,7 +277,7 @@ propertyCtrl.renderUpdatePropertyForm = async (req, res) => {
         formFields.lng = property.location[1]
         const type = property.type
         setPropertyForm(type)
-        res.render('properties/form', { admin, propertyForm, propertyFormValues, formFields, edit, type })
+        res.render('properties/form', { admin, propertyForm, propertyFormValues, formFields, edit, type, map })
     } catch (error) {
         console.log('Error al mostrar formulario para editar: ' + error)
     }
