@@ -1,8 +1,9 @@
 const express = require('express')
+const compression = require('compression')
 const path = require('path')
-const Handlebars = require('handlebars');
-const exphbs = require('express-handlebars');
-const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const Handlebars = require('handlebars')
+const exphbs = require('express-handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const morgan = require('morgan')
 const multer = require('multer')
 const storage = multer.memoryStorage()
@@ -18,8 +19,8 @@ const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
-const passport = require('passport');
-const { ProcessCredentials } = require('aws-sdk');
+const passport = require('passport')
+//const { ProcessCredentials } = require('aws-sdk')
 
 // Init
 const app = express()
@@ -43,6 +44,7 @@ app.use(morgan('dev'))
 app.use(upload.fields([{ name: 'propertyPhoto', maxCount: 1 }, { name: 'propertyPhotos', maxCount: 13 }]))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(compression({ threshold: 0 }));
 app.use(methodOverride('_method'))
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -67,12 +69,12 @@ app.use((req, res, next) => {
     next()
 })
 
+// Static files
+app.use(express.static(path.join(__dirname, 'public')))
+
 // Routes
 app.use(require('./routes/client.routes'))
 app.use(require('./routes/admin.routes'))
 app.use(require('./routes/property.routes'))
-
-// Static files
-app.use(express.static(path.join(__dirname, 'public')))
 
 module.exports = app

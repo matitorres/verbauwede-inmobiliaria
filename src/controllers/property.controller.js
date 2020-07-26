@@ -862,7 +862,7 @@ const uploadPhotosToServer = async (files, property) => {
         property.primaryPhotoPath = basePath + '/1.' + primaryPhoto.ext
         await sharp(primaryPhoto.buffer)
             .resize({
-                height: 1080,
+                height: 400,
                 withoutEnlargement: true
             })
             .withMetadata()
@@ -897,7 +897,7 @@ const uploadPhotosToServer = async (files, property) => {
                 property.secondaryPhotosPaths.push(basePath + '/' + indice + '.' + ext)
                 await sharp(secondaryPhoto.buffer)
                     .resize({
-                        height: 1080,
+                        height: 400,
                         withoutEnlargement: true
                     })
                     .withMetadata()
