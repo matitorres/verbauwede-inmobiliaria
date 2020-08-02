@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer')
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false,
+    secure: true,
     requireTLS: true,
     auth: {
         user: process.env.EMAIL,
@@ -152,6 +152,7 @@ clientCtrl.sendContactForm = (req, res) => {
         req.flash('client_msg_error', msg)
         res.redirect('/')
     } else {
+        console.log("entro")
         if (email !== '' && phone !== '') {
             let contentHTML
             let mailOptions
@@ -201,12 +202,12 @@ clientCtrl.sendContactForm = (req, res) => {
 
             transporter.sendMail(mailOptions, (err, data) => {
                 if (err) {
-                    //console.log(err)
+                    console.log(err)
                     msg = 'Ha ocurrido un error al intentar enviar la consulta. Por favor vuelva a intentarlo.'
                     req.flash('client_msg_error', msg)
                     res.redirect('/')
                 } else {
-                    //console.log(data)
+                    console.log(data)
                     msg = '¡Muchas gracias por contactarse con nosotros! Nos comunicaremos con Ud. a la brevedad.'
                     req.flash('client_msg_success', msg)
                     res.redirect('/')
