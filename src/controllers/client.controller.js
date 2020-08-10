@@ -171,6 +171,8 @@ clientCtrl.sendContactForm = (req, res) => {
                         <li>Localidad: ${city}</li>
                         <li>Provincia: ${province}</li>
                     </ul>
+                    <h3>Mensaje</h3>
+                    <p>${message}</p>
                 `
                 mailOptions = {
                     from: email,
