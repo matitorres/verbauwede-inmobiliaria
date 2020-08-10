@@ -354,7 +354,7 @@ const validateContactFields = (fields) => {
     let error = false
     const patternLetters = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/
     const patternMessage = /[0-9A-Za-zÁÉÍÓÚáéíóúñÑ .,;:?¿!¡]+$/
-    const patternAddress = /^[0-9A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/
+    const patternAddress = /^[0-9A-Za-zÁÉÍÓÚáéíóúñÑ .,:°/]+$/
     const patternNumbers = /^[0-9]+$/
     const patternMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/
 
