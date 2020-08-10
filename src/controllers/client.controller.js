@@ -67,7 +67,7 @@ clientCtrl.renderIndex = async (req, res) => {
     const skipValue = Math.round(Math.random() * featuredPropertiesCount)
     const randomBit = Math.round(Math.random() * 1)
     const sortValue = (randomBit === 1) ? 'desc' : 'asc'
-    const featuredProperties = await Property.find({ outstanding: true }).sort({createdAt: sortValue}).limit(4).skip(skipValue)
+    const featuredProperties = await Property.find({ outstanding: true }).sort({ createdAt: sortValue }).limit(4).skip(skipValue)
     const latestProperties = await Property.find().sort({ createdAt: 'desc' }).limit(5)
     let customProperties
     if (req.cookies.customProperties) {
@@ -145,14 +145,13 @@ clientCtrl.renderProperty = async (req, res) => {
 
 clientCtrl.sendContactForm = (req, res) => {
     contactFormFields = validateContactFields(req.body)
-    console.log(contactFormFields)
-    const { operation, type, address, city, province, name, email, phone, message, error } = contactFormFields
+    //console.log(contactFormFields)
+    const { property, operation, type, address, city, province, name, email, phone, message, error } = contactFormFields
     if (error) {
         msg = 'Valores del formulario fuera de rango. No introduzca caracteres especiales como: " # $ % & / ( ) = | ° > < [ ] { }'
         req.flash('client_msg_error', msg)
         res.redirect('/')
     } else {
-        console.log("entro")
         if (email !== '' && phone !== '') {
             let contentHTML
             let mailOptions
@@ -173,12 +172,14 @@ clientCtrl.sendContactForm = (req, res) => {
                         <li>Provincia: ${province}</li>
                     </ul>
                 `
-
                 mailOptions = {
                     from: email,
                     to: mail,
                     subject: `DUEÑO: Consulta de ${name} desde la web`,
                     html: contentHTML
+                }
+                if (property === '1') {
+                    mailOptions.subject = `CLIENTE: Consulta de ${name} por propiedad`
                 }
             } else {
                 contentHTML = `

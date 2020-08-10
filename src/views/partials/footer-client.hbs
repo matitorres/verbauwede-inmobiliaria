@@ -101,6 +101,14 @@
                     <button type="submit" name="submit"
                         class="btn bg-gradient-custom-primary text-white w-50 d-block ml-auto">Enviar</button>
                 </div>
+                {{#if property}}
+                <input type="hidden" name="property" value="1">
+                <input type="hidden" name="operation" value="{{property.operation}}">
+                <input type="hidden" name="type" value="{{property.type}}">
+                <input type="hidden" name="address" value="{{property.address}}">
+                <input type="hidden" name="city" value="{{property.city}}">
+                <input type="hidden" name="province" value="{{property.province}}">
+                {{/if}}
             </form>
         </div>
     </div>
