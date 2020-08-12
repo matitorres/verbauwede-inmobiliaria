@@ -357,6 +357,7 @@ const validateContactFields = (fields) => {
     const patternLetters = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/
     const patternMessage = /[0-9A-Za-zÁÉÍÓÚáéíóúñÑ .,;:?¿!¡]+$/
     const patternAddress = /^[0-9A-Za-zÁÉÍÓÚáéíóúñÑ .,:°/-]+$/
+    const patternCity = /^[A-Za-zÁÉÍÓÚáéíóúñÑ .,:/-]+$/
     const patternNumbers = /^[0-9]+$/
     const patternMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/
 
@@ -389,7 +390,7 @@ const validateContactFields = (fields) => {
     }
 
     if (fields.city && fields.city !== '') {
-        if (fields.city.length > 50 || !patternLetters.test(fields.city)) {
+        if (fields.city.length > 50 || !patternCity.test(fields.city)) {
             fields.city = ''
             error = true
         }
