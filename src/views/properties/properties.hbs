@@ -35,13 +35,13 @@
                 </div>
                 <div class="col-sm-2 d-flex align-items-center justify-content-around mb-3 mb-sm-0">
                     <form action="/admin/properties/updatePhotos/{{_id}}" method="GET">
-                        <button class="btn btn-link text-secondary" type="submit">
+                        <button class="btn btn-link text-secondary" type="submit" name="submit">
                             <i class="fas fa-images shadow"></i>
                         </button>
                     </form>
                     <form action="/admin/properties/delete/{{_id}}?_method=DELETE" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-link text-secondary" type="submit">
+                        <button class="btn btn-link text-secondary" type="submit" name="submit">
                             <i class="fas fa-trash shadow"></i>
                         </button>
                     </form>
