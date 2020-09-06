@@ -5,6 +5,8 @@ const values = {
     facebook: 'https://www.facebook.com/VIRealState/',
     instagram: 'https://instagram.com/verbauwede_inmobiliaria?igshid=gkuxldmvkpfw',
     blog: 'https://verbauwedeinmobiliaria.blogspot.com/',
+    youtube: 'https://www.youtube.com/channel/UCuS6JSuiQ9EkZ5McB8CL6Wg',
+    linkedin: 'https://www.linkedin.com/company/verbauwede-inmobiliaria/',
     whatsappNumber: '+54 9 266 4322263',
     whatsappLink: 'https://wa.me/5492664322263?text=Hola!%20Necesito%20comunicarme%20con%20ustedes.',
     phone: '+54 9 266 4322263',
